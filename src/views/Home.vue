@@ -11,9 +11,12 @@
       </div>
       <div class="home_content">
           <div class="home_content_left">
-
+				<SideBar></SideBar>
           </div>
           <div class="home_content_right">
+			  <div class="nav-tab">
+				  
+			  </div>
               <router-view></router-view>
           </div>
       </div>
@@ -21,9 +24,7 @@
 </template>
 
 <script>
-
-    import HomeService from './HomeService';
-	import SideBar from '@/src/components/homePage/SideBar.vue';
+	import SideBar from '@/components/homePage/SideBar.vue';
     export default {
         data() {
             return {
@@ -99,5 +100,10 @@
             }
         }
     }
-
+	
+	.nav-tab{
+		height: 50px;
+		width: 100%;
+		border-bottom: lightgreen solid 1px;
+	}
 </style>
