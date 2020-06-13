@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import App from './App.vue'
+<<<<<<< HEAD
 import router from './router'
 import store from './store'
 import ElementUI from 'element-ui';
@@ -16,4 +17,11 @@ new Vue({
   router,
   store,
   render: h => h(App)
+=======
+
+Vue.config.productionTip = false
+
+new Vue({
+  render: h => h(App),
+>>>>>>> eb9e565cdac24fdf44e32594b7cee0ca6556c5aa
 }).$mount('#app')
