@@ -18,8 +18,8 @@ Vue.use(VueRouter)
 		{
 			path:'',
 			name:'',
-			component: ,
-		},
+			component: '',
+		}, 
 		
 		
 	],
