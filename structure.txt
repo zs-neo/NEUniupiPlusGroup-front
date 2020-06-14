@@ -1,0 +1,28 @@
+├──
+
+
+/根目录
+├──vue.config.js
+├──.env
+
+/src
+├──/assets
+|   ├──img.jpg  登录背景图片
+
+├──/components
+|   ├──/homePage
+|   |   ├──HeadBar.vue  头部导航栏
+|   |   ├──SideBar.vue  侧部导航栏 --功能跳转设置
+
+├──/router
+
+├──/store
+
+├──/views
+|   ├──Home.vue 主页
+|   ├──Login.vue
+|   ├──/homeSubs  主页子目录
+|   |   ├──/EventsManage 
+|   |   |   ├──EventsManage.vue 活动管理
+
+
