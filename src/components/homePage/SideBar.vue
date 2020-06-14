@@ -5,6 +5,7 @@
 			  :collapse="collapse"
 			  default-active=""
 			  class="el-menu-vertical-demo"
+			  :router=true
 			  @open="handleOpen"
 			  @close="handleClose"
 			  background-color="#324157"
@@ -25,7 +26,7 @@
 					  <span>美食类别管理</span>
 				  </el-menu-item>
 			  </el-submenu>
-			  <el-menu-item index="2">
+			  <el-menu-item index="/home/EventsManage">
 				<i class="el-icon-document"></i>
 				<span slot="title">活动运维</span>
 			  </el-menu-item>
