@@ -11,7 +11,7 @@
 		  active-text-color="#20a0ff">
 		  <el-submenu index="1">
 			<template slot="title">
-			  <i class="el-icon-location"></i>
+			  <i class="el-icon-fork-spoon"></i>
 			  <span>美食信息管理</span>
 			</template>
 			
@@ -23,20 +23,20 @@
 			  </el-menu-item>
 		  </el-submenu>
 		  <el-menu-item index="2">
-			<i class="el-icon-menu"></i>
+			<i class="el-icon-document"></i>
 			<span slot="title">活动运维</span>
 		  </el-menu-item>
 		  <el-menu-item index="3">
-			<i class="el-icon-document"></i>
+			<i class="el-icon-lock"></i>
 			<span slot="title">系统安全维护</span>
 		  </el-menu-item>
 		  <el-menu-item index="4">
-			<i class="el-icon-setting"></i>
+			<i class="el-icon-goods"></i>
 			<span slot="title">订单管理</span>
 		  </el-menu-item>
 		  <el-submenu index="5">
 			<template slot="title">
-				<i class="el-icon-setting"></i>
+				<i class="el-icon-user"></i>
 				<span slot="title">角色和权限管理</span>
 			</template>
 			<el-menu-item index="5-1">
@@ -47,7 +47,7 @@
 			</el-menu-item>
 		  </el-submenu>
 		  <el-menu-item index="6">
-			<i class="el-icon-setting"></i>
+			<i class="el-icon-files"></i>
 			<span slot="title">统计报表</span>
 		  </el-menu-item>
 		</el-menu>
