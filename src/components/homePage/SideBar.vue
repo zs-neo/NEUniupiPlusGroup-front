@@ -1,15 +1,7 @@
 <template>
 	<div class="sideBar">
-		<el-menu
-		  default-active=""
-		  class="el-menu-vertical-demo"
-		  @open="handleOpen"
-		  @close="handleClose"
-		  background-color="#324157"
-		  text-color="#fff"
-		  :unique-opened=true
-		  :router="true"
-		  active-text-color="#20a0ff">
+		<el-menu class="sidebar-el-menu"  background-color="#324157"
+		    text-color="#bfcbd9" active-text-color="#20a0ff"  :router="true">
 		  <el-submenu index="1">
 			<template slot="title">
 			  <i class="el-icon-location"></i>
@@ -22,11 +14,20 @@
 			  <el-menu-item index="1-2">
 				  <span>美食类别管理</span>
 			  </el-menu-item>
-		  </el-submenu>
-		  <el-menu-item index="/home/EventsManage">
-			<i class="el-icon-menu"></i>
-			<span slot="title">活动运维</span>
-		  </el-menu-item>
+		   </el-submenu>
+	           <el-submenu index="2">
+				<template slot="title">
+				  <i class="el-icon-location"></i>
+				  <span>活动维护</span>
+				</template>
+				
+				  <el-menu-item index="/home/EventsManage">
+					  <span>活动推荐管理</span>
+				  </el-menu-item>
+				  <el-menu-item index="1-2">
+					  <span>优惠管理</span>
+				  </el-menu-item>
+	           </el-submenu>
 		  <el-menu-item index="3">
 			<i class="el-icon-document"></i>
 			<span slot="title">系统安全维护</span>
@@ -72,5 +73,23 @@
 	}
 </script>
 
-<style>
+    }
+<style scoped>
+    .sidebar{
+        display: block;
+        position: absolute;
+        left: 0;
+        top: 70px;
+        bottom:0;
+        overflow-y: scroll;
+    }
+    .sidebar::-webkit-scrollbar{
+        width: 0;
+    }
+    .sidebar-el-menu:not(.el-menu--collapse){
+        width: 250px;
+    }
+    .sidebar > ul {
+        height:100%;
+    }
 </style>

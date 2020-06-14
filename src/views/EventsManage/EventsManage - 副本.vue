@@ -3,7 +3,7 @@
         <!-- 查询区----start -->
         <el-form :label-position="labelPosition" :label-width="labelWidth" :inline="true" ref="formSearch" :model="formSearch" class="demo-form-inline">
             <el-form-item label="活动名称" prop="qq">
-                <el-input v-model="formSearch.qq" placeholder="活动名称"></el-input>
+                <el-input v-model="formSearch.qq" placeholder="qq号"></el-input>
             </el-form-item>
             <el-form-item label="创建时间" prop="createtime">
                 <el-date-picker
@@ -47,9 +47,9 @@
 			<el-table-column prop="age" label="发布状态" align="center" width="100">
             </el-table-column>
 
-            <el-table-column prop="createtime" label="起始日期"  width="130" sortable>
+            <el-table-column prop="createtime" label="起始日期"  width="180" sortable>
             </el-table-column>
-             <el-table-column prop="updatetime" label="终止日期"  width="130" sortable>
+             <el-table-column prop="updatetime" label="终止日期"  width="180" sortable>
             </el-table-column>
             <el-table-column label="操作" fixed="right" min-width="230">
                 <template slot-scope="scope">

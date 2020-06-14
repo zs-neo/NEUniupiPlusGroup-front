@@ -4,6 +4,8 @@
   </div>
 </template>
 <style lang="less">
+	    @import "../static/css/main.css";
+		 @import "../static/css/theme-green/color-green.css"; 
 	*{
 		margin: 0;
 		padding: 0;

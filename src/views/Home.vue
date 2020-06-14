@@ -1,14 +1,10 @@
 <template>
   <div class="home">
       <div class="home_head">
-          <div class="headpic">
-              <el-avatar :src="pic"></el-avatar>
-          </div>
-          <div class="headname">
-              {{nickname}}
-          </div>
+	 <Header></Header>
 
       </div>
+<!-- 	  <Tags></Tags> -->
       <div class="home_content">
           <div class="home_content_left">
 				<SideBar></SideBar>
@@ -19,12 +15,15 @@
 			  </div>
               <router-view></router-view>
           </div>
+	
       </div>
   </div>
 </template>
 
 <script>
 	import SideBar from '@/components/homePage/SideBar.vue';
+	import Header from '@/components/homePage/Header.vue';
+	import Tags from '@/components/homePage/Tags.vue';
     export default {
         data() {
             return {
@@ -34,6 +33,7 @@
         },
 		components:{
 			SideBar,
+			Header,
 		},
         computed: {
 
@@ -66,15 +66,17 @@
         display: flex;
         flex-direction: column;
         .home_head{
-            flex:1;
+            flex: 1;;
 			width: 100%;
-            background-color: lightskyblue;
+            background-color: #07c4a8;
             display: flex;
             >div{
-                height: 40px;
-                -background-color: red;
-                margin: 5px;
-                margin-top: 20px;
+               position: relative;
+                   -webkit-box-sizing: border-box;
+                   box-sizing: border-box;
+                   width: 100%;
+                   height: 70px;
+                   font-size: 22px;
             }
             .headpic{
 
@@ -84,10 +86,11 @@
             }
         }
         .home_content{
-            flex:8;
+            flex:10;
         
             display: flex;
 			height: 100%;
+			
             .home_content_left{
                 flex:1;
 				background-color: #324157;
@@ -96,6 +99,7 @@
             }
             .home_content_right{
                 flex:5;
+				padding: 0.625rem;
           
             }
         }
