@@ -1,13 +1,7 @@
 <template>
   <div class="home">
       <div class="home_head">
-          <div class="headpic">
-              <el-avatar :src="pic"></el-avatar>
-          </div>
-          <div class="headname">
-              {{nickname}}
-          </div>
-
+		<HeadBar></HeadBar>
       </div>
       <div class="home_content">
           <div class="home_content_left">
@@ -25,6 +19,7 @@
 
 <script>
 	import SideBar from '@/components/homePage/SideBar.vue';
+	import HeadBar from'@/components/homePage/HeadBar.vue';
     export default {
         data() {
             return {
@@ -33,7 +28,7 @@
             }
         },
 		components:{
-			SideBar,
+			SideBar,HeadBar,
 		},
         computed: {
 
@@ -70,18 +65,6 @@
 			width: 100%;
             background-color: lightskyblue;
             display: flex;
-            >div{
-                height: 40px;
-                -background-color: red;
-                margin: 5px;
-                margin-top: 20px;
-            }
-            .headpic{
-
-            }
-            .headname{
-                line-height: 40px;
-            }
         }
         .home_content{
             flex:8;
@@ -89,13 +72,13 @@
             display: flex;
 			height: 100%;
             .home_content_left{
-                flex:1;
+                display: inline-block;
 				background-color: #324157;
 				text-align: left;
-				
             }
             .home_content_right{
-                flex:5;
+                width: 100%;
+				display: inline-block;
           
             }
         }
