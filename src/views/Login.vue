@@ -2,7 +2,8 @@
 <div id="loginFrame">
 <div class="containers">
     <el-form label-width="80px" class="login-page" >
-      <h2>秘制小厨房后台录</h2>
+      <h2>登录验证</h2>
+	  <br />
       <el-form-item label="用  户:" prop="username">
         <el-input v-model="userinfo.loginname" placeholder="请输入用户名">
           <el-button slot="prepend" icon="el-icon-user"></el-button>

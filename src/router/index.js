@@ -4,6 +4,8 @@ import Login from '@/views/Login.vue'
 import Home from '@/views/Home.vue'
 import EventsManage from '../views/EventsManage/EventsManage.vue'
 import CountMange from '../views/CountManage/CountMange.vue'
+import EventsManage from '../views/homeSubs/EventsManage/EventsManage.vue'
+import RolesManage from '../views/homeSubs/PrivilegeManage/RolesManage.vue'
 Vue.use(VueRouter)
 
   const routes = [
@@ -18,7 +20,7 @@ Vue.use(VueRouter)
     name: 'Home',
     component: Home,
 	children:[
-		{
+		{ 
 		  path: '/home/EventsManage',
 		  name: 'EventsManage',
 		  component: EventsManage,
@@ -28,6 +30,12 @@ Vue.use(VueRouter)
   		  name: 'CountMange',
   		  component: CountMange,
   },
+		},
+		{
+			path: '/home/rolesManage',
+			name: 'RolesManage',
+			component: RolesManage
+		}
 	],
   }
 ]

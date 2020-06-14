@@ -1,29 +1,31 @@
 <template>
   <div class="home">
       <div class="home_head">
-	 <Header></Header>
-
+		<HeadBar></HeadBar>
       </div>
-<!-- 	  <Tags></Tags> -->
       <div class="home_content">
           <div class="home_content_left">
 				<SideBar></SideBar>
           </div>
           <div class="home_content_right">
-			  <div class="nav-tab">
+			  <div class="showPage">
+				  <div class="nav-tab">
 				  
+				  </div>
+				  <div class="pageContent">
+					  <router-view></router-view>
+				  </div> 
 			  </div>
-              <router-view></router-view>
+			  
           </div>
-	
       </div>
   </div>
 </template>
 
 <script>
 	import SideBar from '@/components/homePage/SideBar.vue';
+	import HeadBar from'@/components/homePage/HeadBar.vue';
 	import Header from '@/components/homePage/Header.vue';
-	import Tags from '@/components/homePage/Tags.vue';
     export default {
         data() {
             return {
@@ -32,8 +34,7 @@
             }
         },
 		components:{
-			SideBar,
-			Header,
+			SideBar,HeadBar,Header
 		},
         computed: {
 
@@ -67,51 +68,44 @@
         flex-direction: column;
 	    overflow: hidden;
         .home_head{
-            flex: 1;;
+            flex:1;
 			width: 100%;
-            background-color: #07c4a8;
+            background-color: #409EFF;
             display: flex;
-            >div{
-               position: relative;
-                   -webkit-box-sizing: border-box;
-                   box-sizing: border-box;
-                   width: 100%;
-                   height: 70px;
-                   font-size: 22px;
-            }
-            .headpic{
-
-            }
-            .headname{
-                line-height: 40px;
-            }
         }
         .home_content{
-            flex:10;
+            flex:8;
         
             display: flex;
 			height: 100%;
-		    overflow-y: scroll;
-			
+		    overflow-y: auto;
             .home_content_left{
-                flex:1;
+                display: inline-block;
 				background-color: #324157;
 				text-align: left;
-				
             }
             .home_content_right{
                 flex:5;
 				padding: 0.625rem;
 				width: 75%;
-	
+                width: 100%;
+				display: inline-block;
           
             }
         }
     }
-	
-	.nav-tab{
-		height: 50px;
+	.showPage{
 		width: 100%;
+		height: 100%;
+		display: flex;
+		flex-direction: column;
+	}
+	.showPage .nav-tab{
+		flex: 1;
 		border-bottom: lightgreen solid 1px;
+	}
+	.showPage .pageContent{
+		flex: 15;
+		
 	}
 </style>

@@ -34,7 +34,7 @@
 		width: 100%;
 		height: 100%;
 		font-size: 22px;
-		color: #fff;
+		color: #FFFFFF;
 	}
 	.head-left{
 		margin-left: 20px;
