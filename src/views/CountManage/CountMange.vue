@@ -30,18 +30,12 @@
         <el-table :data="tableData" v-loading="listLoading"  border stripe style="width: 100%" @selection-change="handleSelectionChange">
             <el-table-column type="selection" width="60">
             </el-table-column>
-            <el-table-column prop="name" label="活动编号" width="150" align="center" sortable>
+            <el-table-column prop="name" label="优惠卷名称" width="150" align="center" sortable>
                  <template slot-scope="scope">
                     <a href="javacript:;" style="color: #00D1B2" @click="openDetail(scope.row)">{{ scope.row.name}}</a>
                 </template>
             </el-table-column>
-            <el-table-column prop="city" label="活动名称" align="center" width="130">
-            </el-table-column>
-            <el-table-column prop="type" label="活动图片" align="center" width="150">
-                 <template slot-scope="scope" align="center" width="150">
-                    <span>{{ scope.row.type |convertType}}</span>
-                </template>
-            </el-table-column>
+           
              <el-table-column prop="age" label="内容描述" align="center" width="150">
             </el-table-column>
 			<el-table-column prop="age" label="发布状态" align="center" width="100">
@@ -51,6 +45,14 @@
             </el-table-column>
              <el-table-column prop="updatetime" label="终止日期"  width="130" sortable>
             </el-table-column>
+			<el-table-column prop="city" label="数量" align="center" width="130">
+			</el-table-column>
+			<el-table-column prop="type" label="领取人数" align="center" width="150">
+			</el-table-column>
+			<el-table-column prop="city" label="已使用" align="center" width="130">
+			</el-table-column>
+			<el-table-column prop="type" label="已使用率" align="center" width="150">
+			</el-table-column>
             <el-table-column label="操作" fixed="right" min-width="230">
                 <template slot-scope="scope">
                     <el-button size="mini" plain type="primary" @click="handleDetail(scope.$index, scope.row)">上架</el-button>
@@ -66,7 +68,7 @@
         <!-- 编辑弹框---start -->
         <el-dialog  :title="formEditTitle" :visible.sync="dialogEdittVisible" width="700px" @close="closeDialog('formEdit')">
             <el-form :label-position="labelPosition" :label-width="labelWidth"  :disabled="formEditDisabled" :inline="true" ref="formEdit" :model="formEdit" class="demo-form-inline">
-                 <el-form-item label="活动名称" prop="name">
+                 <el-form-item label="优惠卷名称" prop="name">
                     <el-input v-model="formEdit.name" placeholder="活动名称" ></el-input>
                 </el-form-item>
                 <el-form-item label="活动" prop="city">

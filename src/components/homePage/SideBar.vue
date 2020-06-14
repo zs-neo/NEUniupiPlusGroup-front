@@ -18,14 +18,14 @@
 	           <el-submenu index="2">
 				<template slot="title">
 				  <i class="el-icon-location"></i>
-				  <span>活动维护</span>
+				  <span>活动管理</span>
 				</template>
 				
 				  <el-menu-item index="/home/EventsManage">
-					  <span>活动推荐管理</span>
+					  <span>限时活动</span>
 				  </el-menu-item>
-				  <el-menu-item index="1-2">
-					  <span>优惠管理</span>
+				  <el-menu-item index="/home/CountMange">
+					  <span>优惠卷</span>
 				  </el-menu-item>
 	           </el-submenu>
 		  <el-menu-item index="3">

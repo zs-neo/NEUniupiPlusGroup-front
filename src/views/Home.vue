@@ -65,6 +65,7 @@
         height:100%;
         display: flex;
         flex-direction: column;
+	    overflow: hidden;
         .home_head{
             flex: 1;;
 			width: 100%;
@@ -90,6 +91,7 @@
         
             display: flex;
 			height: 100%;
+		    overflow-y: scroll;
 			
             .home_content_left{
                 flex:1;
@@ -100,6 +102,8 @@
             .home_content_right{
                 flex:5;
 				padding: 0.625rem;
+				width: 75%;
+	
           
             }
         }

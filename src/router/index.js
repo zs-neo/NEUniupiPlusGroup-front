@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import Login from '@/views/Login.vue'
 import Home from '@/views/Home.vue'
 import EventsManage from '../views/EventsManage/EventsManage.vue'
+import CountMange from '../views/CountManage/CountMange.vue'
 Vue.use(VueRouter)
 
   const routes = [
@@ -21,6 +22,11 @@ Vue.use(VueRouter)
 		  path: '/home/EventsManage',
 		  name: 'EventsManage',
 		  component: EventsManage,
+  },
+  {
+  		  path: '/home/CountMange',
+  		  name: 'CountMange',
+  		  component: CountMange,
   },
 	],
   }
