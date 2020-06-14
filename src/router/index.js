@@ -9,6 +9,7 @@ Vue.use(VueRouter)
     path: '/',
     name: 'Login',
     component: Login,
+	
   },
   {
     path: '/home',
@@ -27,3 +28,8 @@ const router = new VueRouter({
 })
 
 export default router
+
+router.beforeEach((to,from,next)=>{
+	document.title = "秘制美食后台系统";
+	next();
+})
