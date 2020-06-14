@@ -1,14 +1,22 @@
 <template>
-	<div id="loginFrame">
-		<div id="loginInfo">
-			<div><h1 style="color: cadetblue;">用户登录</h1></div>
-			<div class="errorMsg"><span>{{msg}}</span></div>
-			<div class="inputArea">账号：<input v-model="userinfo.loginname" type="text"></div>
-			<div class="inputArea">密码：<input v-model="userinfo.pwd" type="text"></div>
-			<hr >
-			<div><button type="button" @click="login">登录</button></div>
-		</div>
-	</div>
+<div id="loginFrame">
+<div class="containers">
+    <el-form label-width="80px" class="login-page" >
+      <h2>秘制小厨房后台录</h2>
+      <el-form-item label="用  户:" prop="username">
+        <el-input v-model="userinfo.loginname" placeholder="请输入用户名">
+          <el-button slot="prepend" icon="el-icon-user"></el-button>
+        </el-input>
+      </el-form-item>
+      <el-form-item label="密 码:">
+        <el-input v-model="userinfo.pwd" type="password" placeholder="请输入密码">
+          <el-button slot="prepend" icon="el-icon-key"></el-button>
+        </el-input>
+      </el-form-item>
+      <el-button type="primary" icon="el-icon-user-solid" @click="login">登 录</el-button>
+    </el-form>
+  </div>
+ </div> 
 </template>
 
 <script>
@@ -46,7 +54,7 @@
 	}
 </script>
 
-<style>
+	<style >
 
 	#loginFrame{
 		background-image: url(../assets/img.jpg);
@@ -56,33 +64,20 @@
 		height: 100%;
 		width: 100%;
 	}
-	#loginInfo{
-		background-color: aquamarine;
-		border-radius: 8px;
-		border: 1px solid black;
-		width: 300px;
-		height: 200px;
-		text-align: center;
-		margin: 0 auto;
-		margin-top: 250px;
-		background-color: rgba(240, 255, 255, 0.6);
+	.containers {
 
+	  margin-top: 200px;
+	  width: 100%;
+	  height: 100%;
 	}
-	#loginInfo button{
-		text-align: center;
-		border-radius:5px;
-		border: 2px solid #ADD8E6; 
-		background-color: cyan; 
-		width: 20%;
-		height: 35px;
-		margin: 5px;
+	.login-page {
+	  border-radius: 5px;
+	  margin: auto;
+	  width: 350px;
+	  padding: 35px 55px 15px;
+	  background: #fff;
+	  border: 1px solid #eaeaea;
+	  box-shadow: 0 0 25px #cac6c6;
 	}
-	#loginInfo .errorMsg{
-		color: red;
-		font-weight: 700;
-	}
-	#loginInfo .inputArea{
-		height: 40px;
-		margin: 10px;
-	}
+	</style>
 </style>

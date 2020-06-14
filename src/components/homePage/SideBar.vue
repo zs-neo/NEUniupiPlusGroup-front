@@ -8,6 +8,7 @@
 		  background-color="#324157"
 		  text-color="#fff"
 		  :unique-opened=true
+		  :router="true"
 		  active-text-color="#20a0ff">
 		  <el-submenu index="1">
 			<template slot="title">
@@ -15,14 +16,14 @@
 			  <span>美食信息管理</span>
 			</template>
 			
-			  <el-menu-item index="1-1">
+			  <el-menu-item index="2">
 				  <span>美食管理</span>
 			  </el-menu-item>
 			  <el-menu-item index="1-2">
 				  <span>美食类别管理</span>
 			  </el-menu-item>
 		  </el-submenu>
-		  <el-menu-item index="2">
+		  <el-menu-item index="/home/EventsManage">
 			<i class="el-icon-menu"></i>
 			<span slot="title">活动运维</span>
 		  </el-menu-item>
