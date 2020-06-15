@@ -36,6 +36,10 @@ Vue.use(VueRouter)
   		  path: '/home/CountMange',
   		  name: 'CountMange',
   		  component: CountMange,
+		  meta:{
+			 title: "优惠券", 
+			 show: true
+		  }
   		},
 		{
 			path: '/home/rolesManage',

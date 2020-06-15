@@ -97,8 +97,7 @@
             }
             .home_content_right{
                 flex:5;
-				padding: 0.625rem;
-				width: 75%;
+				width: 100%;
                 width: 100%;
 				display: inline-block;
           

@@ -49,11 +49,11 @@
             // 关闭全部标签
             closeAll(){
                 this.tagsList = [{
-                    name: "index",
-                    path: "/index",
-                    title: "系统首页"
+                    name: "home",
+                    path: "/home",
+                    title: "首页"
                 }];
-                this.$router.push('/');
+                this.$router.push('/home');
             },
             // 关闭其他标签
             closeOther(){
@@ -116,7 +116,7 @@
 
     .tags-li {
         float: left;
-        margin: 7px 5px 2px 3px;
+        margin: 5px 5px 2px 3px;
 		line-height: 33px;
         border-radius: 3px;
         font-size: 13px;
@@ -124,12 +124,10 @@
         cursor: pointer;
         height: 70%;
         border: 1px solid #e9eaec;
-        background: #fff;
+        background: lawngreen;
         padding: 0 5px 0 12px;
         vertical-align: middle;
         color: #666;
-        -webkit-transition: all .3s ease-in;
-        -moz-transition: all .3s ease-in;
         transition: all .3s ease-in;
     }
 
@@ -147,6 +145,7 @@
         overflow: hidden;
         white-space: nowrap;
         text-overflow: ellipsis;
+		text-decoration: none;
         margin-right: 5px;
         color: #666;
     }
@@ -160,7 +159,6 @@
         right: 0;
         top: 0;
         box-sizing: border-box;
-        padding-top: 1px;
         text-align: center;
         width: 110px;
         height: 100%;

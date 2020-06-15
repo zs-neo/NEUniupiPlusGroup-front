@@ -25,7 +25,7 @@
 					  <span>限时活动</span>
 				  </el-menu-item>
 				  <el-menu-item index="/home/CountMange">
-					  <span>优惠卷</span>
+					  <span>优惠券</span>
 				  </el-menu-item>
 	           </el-submenu>
 		  <el-menu-item index="3">
