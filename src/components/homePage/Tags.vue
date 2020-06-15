@@ -6,12 +6,12 @@
                     {{item.title}}
                 </router-link>
                 
-                <span v-show="item.title!='系统首页'" class="tags-li-icon" @click="closeTags(index)"><i class="el-icon-close"></i></span>
+                <span v-show="item.title!='首页'" class="tags-li-icon" @click="closeTags(index)"><i class="el-icon-close"></i></span>
             </li>
         </ul>
         <div class="tags-close-box">
             <el-dropdown @command="handleTags">
-                <el-button size="small" type="primary">
+                <el-button size="small" type="primary" style="margin-top: 5px;">
                     标签选项<i class="el-icon-arrow-down el-icon--right"></i>
                 </el-button>
                 <el-dropdown-menu size="medium" slot="dropdown">
@@ -25,7 +25,7 @@
 </template>
 
 <script>
-    import bus from './bus';
+    import bus from '@/Bus.js';
     export default {
         data() {
             return {
@@ -98,10 +98,9 @@
 
 
 <style>
-    $tag_height:34px;//tab高度变量
     .tags {
         position: relative;
-        height: $tag_height;
+        height: 100%;
         overflow: hidden;
         background: #fff;
         padding-right: 120px;
@@ -112,17 +111,18 @@
         box-sizing: border-box;
         width: 100%;
         height: 100%;
+		margin-left: 5px;
     }
 
     .tags-li {
         float: left;
-        margin: 3px 5px 2px 3px;
+        margin: 7px 5px 2px 3px;
+		line-height: 33px;
         border-radius: 3px;
-        font-size: 12px;
+        font-size: 13px;
         overflow: hidden;
         cursor: pointer;
-        height: $tag_height - 8px;
-        line-height: $tag_height - 8px;
+        height: 70%;
         border: 1px solid #e9eaec;
         background: #fff;
         padding: 0 5px 0 12px;
@@ -163,7 +163,7 @@
         padding-top: 1px;
         text-align: center;
         width: 110px;
-        height: $tag_height;
+        height: 100%;
         background: #fff;
         box-shadow: -3px 0 15px 3px rgba(0, 0, 0, .1);
         z-index: 10;

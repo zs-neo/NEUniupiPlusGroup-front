@@ -1,54 +1,38 @@
 <template>
-    <div class="header">
-        <!-- 折叠按钮 -->
-        <div class="collapse-btn" @click="collapseChage">
-            <i class="el-icon-menu"></i>
-        </div>
-        <div class="logo">秘制小厨房后台管理系统</div>
-        <div class="header-right">
-            <div class="header-user-con">
-                <!-- <marquee onMouseOver="this.start()" style="font-size:18px;padding-bottom:4px;width:100px;" scrollamount="1">{{getlev}}</marquee> -->
-                <div style="font-size:18px;padding-bottom:4px;width:60px;">张三admin</div>
-                <!-- 全屏显示 -->
-                <div class="btn-fullscreen" @click="handleFullScreen">
-                    <el-tooltip effect="dark" :content="fullscreen?`取消全屏`:`全屏`" placement="bottom">
-                        <i class="el-icon-rank"></i>
-                    </el-tooltip>
-                </div>
-                <!-- 消息中心 -->
-                <div class="btn-bell">
-                    <el-tooltip effect="dark" :content="message?`有${message}条未读消息`:`消息中心`" placement="bottom">
-                        <router-link to="/tabs">
-                            <i class="el-icon-bell"></i>
-                        </router-link>
-                    </el-tooltip>
-                    <span class="btn-bell-badge" v-if="message"></span>
-                </div>
-                <!-- 用户头像 -->
-                <div class="user-avator"><img src="../../../static/img/img.jpg"></div>
-                <!-- 用户名下拉菜单 -->
-                <el-dropdown class="user-name" trigger="click" @command="handleCommand">
-                    <span class="el-dropdown-link">
-                        {{username}} <i class="el-icon-caret-bottom"></i>
-                    </span>
-                    
-                    <el-dropdown-menu slot="dropdown">
-                        
-                        <a  href="https://github.com/merciqiao" target="_blank">
-                            <el-dropdown-item>关于作者</el-dropdown-item>
-                        </a>
-                        <a href="https://github.com/merciqiao/merciqiao-vue" target="_blank">
-                            <el-dropdown-item>项目仓库</el-dropdown-item>
-                        </a>
-                        <a href="/zanzhu" target="_blank">
-                            <el-dropdown-item style="color:orange;">赞助作者</el-dropdown-item>
-                        </a>
-                        <el-dropdown-item divided  command="changeZh">切换中文</el-dropdown-item>
-                        <el-dropdown-item command="changeEn">切换英文</el-dropdown-item>
-                        <el-dropdown-item divided  command="loginout">退出登录</el-dropdown-item>
-                    </el-dropdown-menu>
-                </el-dropdown>
-            </div>
+    <div class="header" align="right">
+        <div class="header-right" >
+			<div class="btn-fullscreen" @click="handleFullScreen">
+				<el-tooltip effect="dark" :content="fullscreen?`取消全屏`:`全屏`" placement="bottom">
+					<i style="transform: rotate(45deg);" class="el-icon-rank"></i>
+				</el-tooltip>
+			</div>
+			<!-- 消息中心 -->
+			<div class="btn-bell">
+				<el-tooltip effect="dark" :content="message?`有${message}条未读消息`:`消息中心`" placement="bottom">
+					<router-link to="/tabs">
+						<i class="el-icon-bell"></i>
+					</router-link>
+				</el-tooltip>
+				<span class="btn-bell-badge" v-if="message"></span>
+			</div>
+			<!-- 用户头像 -->
+				<div class="user-avator"><img src="../../../static/img/img.jpg"></div>
+				<!-- 用户名下拉菜单 -->
+				<div class="usernameTab">
+				<el-dropdown trigger="click" @command="handleCommand">
+					<span class="el-dropdown-link">
+						{{username}} <i class="el-icon-caret-bottom"></i>
+					</span>
+					
+					<el-dropdown-menu slot="dropdown">
+						
+						<a  href="" >
+							<el-dropdown-item>我的信息</el-dropdown-item>
+						</a>
+						<el-dropdown-item divided  command="loginout">退出登录</el-dropdown-item>
+					</el-dropdown-menu>
+				</el-dropdown>
+			</div>
         </div>
     </div>
 </template>
@@ -70,18 +54,6 @@
 				 let username = "张三";
                 return username ? username : this.name;
             },
-        //     getlev(){
-        
-        //         let levList = this.$common.getSessionStorage('lev',true);
-        //         let lev='';
-        //         if(levList){
-        //             for(var i=0;i<levList.length;i++){
-        //                 lev+=levList[i].roleName;
-        //             }
-        //         }
-               
-        //         return lev ? lev : this.lev;
-        //     }
         },
         methods:{
             // 用户名下拉菜单选择事件
@@ -90,17 +62,6 @@
                     this.$common.removeSessionStorage('token');
                     this.$router.push('/login');
                 }
-                else if(command == 'changeZh'){
-                    this.$i18n.locale = 'zh_CN';
-                }
-                else if(command == 'changeEn'){
-                    this.$i18n.locale = 'en_US';
-                }
-            },
-            // 侧边栏折叠
-            collapseChage(){
-                // this.collapse = !this.collapse;
-                // bus.$emit('collapse', this.collapse);
             },
             // 全屏事件
             handleFullScreen(){
@@ -130,11 +91,6 @@
                 this.fullscreen = !this.fullscreen;
             }
         },
-        mounted(){
-            if(document.body.clientWidth < 1366){
-                this.collapseChage();
-            }
-        }
     }
 </script>
 <style scoped>
@@ -142,40 +98,32 @@
         position: relative;
         box-sizing: border-box;
         width: 100%;
-        height: 70px;
+        height: 100%;
         font-size: 22px;
         color: #fff;
     }
-    .collapse-btn{
-        float: left;
-        padding: 0 21px;
-        cursor: pointer;
-        line-height: 70px;
-    }
-    .header .logo{
-        float: left;
-        width:250px;
-        line-height: 70px;
-    }
+
     .header-right{
-        float: right;
-        padding-right: 50px;
-    }
-    .header-user-con{
-        display: flex;
-        height: 70px;
-        align-items: center;
+		height: 100%;
+		width: 300px;
+		display: flex;
+		line-height: 100px;
+		padding-right: 20px;
+		text-align: center;
     }
     .btn-fullscreen{
-        transform: rotate(45deg);
-        margin-right: 5px;
+        -transform: rotate(45deg);
         font-size: 24px;
+		flex: 1;
+		height: 100%;
+		padding-top: 0px;
+		
     }
-    .btn-bell, .btn-fullscreen{
-        position: relative;
-        width: 30px;
-        height: 30px;
-        text-align: center;
+    .btn-bell{
+        
+        flex: 1;
+        height: 100%;
+        
         border-radius: 15px;
         cursor: pointer;
     }
@@ -186,23 +134,26 @@
         width: 8px;
         height: 8px;
         border-radius: 4px;
-        background: #f56c6c;
+        -background: #f56c6c;
         color: #fff;
     }
     .btn-bell .el-icon-bell{
         color: #fff;
     }
-    .user-name{
-        margin-left: 10px;
+    .usernameTab{
+        flex: 2;
     }
     .user-avator{
-        margin-left: 20px;
+        flex: 1;
+		align-content: center;
     }
     .user-avator img{
-        display: block;
-        width:40px;
-        height:40px;
         border-radius: 50%;
+		height: 45px;
+		width: 45px;
+		position: absolute;
+		top: 25%;
+		
     }
     .el-dropdown-link{
         color: #fff;

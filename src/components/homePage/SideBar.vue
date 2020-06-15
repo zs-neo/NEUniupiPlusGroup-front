@@ -41,7 +41,7 @@
 				<i class="el-icon-setting"></i>
 				<span slot="title">角色和权限管理</span>
 			</template>
-			<el-menu-item index="5-1">
+			<el-menu-item index="/home/rolesManage">
 				<span>角色管理</span>
 			</el-menu-item>
 			<el-menu-item index="5-2">

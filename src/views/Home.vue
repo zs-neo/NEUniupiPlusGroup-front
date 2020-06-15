@@ -1,7 +1,12 @@
 <template>
   <div class="home">
       <div class="home_head">
-		<HeadBar></HeadBar>
+		  <div class="home-head-left">
+			  <HeadBar></HeadBar>
+		  </div>
+		  <div class="home-head-right">
+			  <Header></Header>
+		  </div>
       </div>
       <div class="home_content">
           <div class="home_content_left">
@@ -10,7 +15,7 @@
           <div class="home_content_right">
 			  <div class="showPage">
 				  <div class="nav-tab">
-				  
+					<Tags></Tags>
 				  </div>
 				  <div class="pageContent">
 					  <router-view></router-view>
@@ -25,8 +30,8 @@
 <script>
 	import SideBar from '@/components/homePage/SideBar.vue';
 	import HeadBar from'@/components/homePage/HeadBar.vue';
-	import Header from '@/components/homePage/Header.vue';
-    export default {
+	import Header from '../components/homePage/Header.vue';
+	import Tags from '../components/homePage/Tags.vue';    export default {
         data() {
             return {
                 nickname:'',
@@ -34,8 +39,7 @@
             }
         },
 		components:{
-			SideBar,HeadBar,Header
-		},
+			SideBar,HeadBar,Header, Tags		},
         computed: {
 
         },
@@ -72,6 +76,13 @@
 			width: 100%;
             background-color: #409EFF;
             display: flex;
+			
+			.home-head-left{
+				flex: 5;
+			}
+			.home-head-right{
+				flex: 5;
+			}
         }
         .home_content{
             flex:8;

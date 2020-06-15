@@ -1,5 +1,5 @@
 <template>
-    <div class="container messageboard">
+    <div class="messageboard">
         <!-- 查询区----start -->
         <el-form :label-position="labelPosition" :label-width="labelWidth" :inline="true" ref="formSearch" :model="formSearch" class="demo-form-inline">
             <el-form-item label="活动名称" prop="qq">
@@ -27,7 +27,7 @@
         </el-row>
         <!-- 操作区----end -->
         <!-- 表格---start -->
-        <el-table :data="tableData" v-loading="listLoading"  border stripe style="width: 100%" @selection-change="handleSelectionChange">
+        <el-table style="text-align: center;" :data="tableData" v-loading="listLoading"  border stripe  @selection-change="handleSelectionChange">
             <el-table-column type="selection" width="60">
             </el-table-column>
             <el-table-column prop="name" label="活动编号" width="150" align="center" sortable>
@@ -39,7 +39,7 @@
             </el-table-column>
             <el-table-column prop="type" label="活动图片" align="center" width="150">
                  <template slot-scope="scope" align="center" width="150">
-                    <span>{{ scope.row.type |convertType}}</span>
+                    <span>{{ scope.row.type}}</span>
                 </template>
             </el-table-column>
              <el-table-column prop="age" label="内容描述" align="center" width="150">
@@ -51,7 +51,7 @@
             </el-table-column>
              <el-table-column prop="updatetime" label="终止日期"  width="130" sortable>
             </el-table-column>
-            <el-table-column label="操作" fixed="right" min-width="230">
+            <el-table-column label="操作" >
                 <template slot-scope="scope">
                     <el-button size="mini" plain type="primary" @click="handleDetail(scope.$index, scope.row)">上架</el-button>
                     <el-button size="mini" @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
@@ -115,6 +115,10 @@
 
 <style>
 .messageboard{
+	margin-top: 30px;
+	height: 100%;
+	margin-left: 10px;
+	width: inherit;
     // 设置输入框的宽度
     .el-form-item__content {
         width: 220px;
