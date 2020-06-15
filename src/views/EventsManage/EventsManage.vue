@@ -1,69 +1,68 @@
 <template>
-    <div class="messageboard">
+    <div class="container messageboard">
         <!-- 查询区----start -->
-		<div class="messageContent">
-			<el-form :label-position="labelPosition" :label-width="labelWidth" :inline="true" ref="formSearch" :model="formSearch" class="demo-form-inline">
-				<el-form-item label="活动名称" prop="qq">
-					<el-input v-model="formSearch.qq" placeholder="qq号"></el-input>
-				</el-form-item>
-				<el-form-item label="创建时间" prop="createtime">
-					<el-date-picker
-						v-model="formSearch.createtime"
-						type="daterange"
-						range-separator="至"
-						start-placeholder="开始日期"
-						end-placeholder="结束日期">
-					</el-date-picker>
-				</el-form-item>
-				<el-form-item label=" " style="margin-left:50px;">
-					<el-button type="primary">查询</el-button>
-					<el-button type="warning" plain >重置</el-button>
-				</el-form-item>
-			</el-form>
-			<!-- 查询区----end -->
-			<!-- 操作区----start -->
-			<el-row style="float:left">
-				<el-button size="small" round type="primary" >新增</el-button>
-				<el-button size="small" round type="danger">批量删除</el-button>
-			</el-row>
-			<!-- 操作区----end -->
-			<!-- 表格---start -->
-			<el-table style="text-align: center;" :data="tableData" v-loading="listLoading"  border stripe  @selection-change="handleSelectionChange">
-				<el-table-column type="selection" width="60">
-				</el-table-column>
-				<el-table-column prop="name" label="活动编号" width="150" align="center" sortable>
-					 <template slot-scope="scope">
-						<a href="javacript:;" style="color: #00D1B2" @click="openDetail(scope.row)">{{ scope.row.name}}</a>
-					</template>
-				</el-table-column>
-				<el-table-column prop="city" label="活动名称" align="center" width="130">
-				</el-table-column>
-				<el-table-column prop="type" label="活动图片" align="center" width="150">
-					 <template slot-scope="scope" align="center" width="150">
-						<span>{{ scope.row.type}}</span>
-					</template>
-				</el-table-column>
-				 <el-table-column prop="age" label="内容描述" align="center" width="150">
-				</el-table-column>
-				<el-table-column prop="age" label="发布状态" align="center" width="100">
-				</el-table-column>
+        <el-form :label-position="labelPosition" :label-width="labelWidth" :inline="true" ref="formSearch" :model="formSearch" class="demo-form-inline">
+            <el-form-item label="活动名称" prop="qq">
+                <el-input v-model="formSearch.qq" placeholder="qq号"></el-input>
+            </el-form-item>
+            <el-form-item label="创建时间" prop="createtime">
+                <el-date-picker
+                    v-model="formSearch.createtime"
+                    type="daterange"
+                    range-separator="至"
+                    start-placeholder="开始日期"
+                    end-placeholder="结束日期">
+                </el-date-picker>
+            </el-form-item>
+            <el-form-item label=" " style="margin-left:50px;">
+                <el-button type="primary">查询</el-button>
+                <el-button type="warning" plain >重置</el-button>
+            </el-form-item>
+        </el-form>
+        <!-- 查询区----end -->
+        <!-- 操作区----start -->
+        <el-row style="float:left">
+            <el-button size="small" round type="primary" >新增</el-button>
+            <el-button size="small" round type="danger">批量删除</el-button>
+        </el-row>
+        <!-- 操作区----end -->
+        <!-- 表格---start -->
+        <el-table :data="tableData" v-loading="listLoading"  border stripe style="width: 100%" @selection-change="handleSelectionChange">
+            <el-table-column type="selection" width="60">
+            </el-table-column>
+            <el-table-column prop="name" label="活动编号" width="150" align="center" sortable>
+                 <template slot-scope="scope">
+                    <a href="javacript:;" style="color: #00D1B2" @click="openDetail(scope.row)">{{ scope.row.name}}</a>
+                </template>
+            </el-table-column>
+            <el-table-column prop="city" label="活动名称" align="center" width="130">
+            </el-table-column>
+            <el-table-column prop="type" label="活动图片" align="center" width="150">
+                 <template slot-scope="scope" align="center" width="150">
+                    <span>{{ scope.row.type |convertType}}</span>
+                </template>
+            </el-table-column>
+             <el-table-column prop="age" label="内容描述" align="center" width="150">
+            </el-table-column>
+			<el-table-column prop="age" label="发布状态" align="center" width="100">
+            </el-table-column>
 
-				<el-table-column prop="createtime" label="起始日期"  width="130" sortable>
-				</el-table-column>
-				 <el-table-column prop="updatetime" label="终止日期"  width="130" sortable>
-				</el-table-column>
-				<el-table-column label="操作" >
-					<template slot-scope="scope">
-						<el-button size="mini" plain type="primary" @click="handleDetail(scope.$index, scope.row)">上架</el-button>
-						<el-button size="mini" @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
-						<el-button size="mini" plain type="danger" @click="handleDelete(scope.$index, scope.row)">删除</el-button>
-					</template>
-				</el-table-column>
-			</el-table>
-			<el-pagination background layout="total,sizes,prev, pager, next,jumper" :current-page="pageInfo.currentPage" :page-size="pageInfo.pageSize" :total="pageInfo.pageTotal" :page-sizes="[5, 10, 20, 50]" @size-change="handleSizeChange" @current-change="handleCurrentChange">
-			</el-pagination>
+            <el-table-column prop="createtime" label="起始日期"  width="130" sortable>
+            </el-table-column>
+             <el-table-column prop="updatetime" label="终止日期"  width="130" sortable>
+            </el-table-column>
+            <el-table-column label="操作" fixed="right" min-width="230">
+                <template slot-scope="scope">
+                    <el-button size="mini" plain type="primary" @click="handleDetail(scope.$index, scope.row)">上架</el-button>
+                    <el-button size="mini" @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
+                    <el-button size="mini" plain type="danger" @click="handleDelete(scope.$index, scope.row)">删除</el-button>
+                </template>
+            </el-table-column>
+        </el-table>
+        <el-pagination background layout="total,sizes,prev, pager, next,jumper" :current-page="pageInfo.currentPage" :page-size="pageInfo.pageSize" :total="pageInfo.pageTotal" :page-sizes="[5, 10, 20, 50]" @size-change="handleSizeChange" @current-change="handleCurrentChange">
+        </el-pagination>
         <!-- 表格---end -->
-		</div>
+
         <!-- 编辑弹框---start -->
         <el-dialog  :title="formEditTitle" :visible.sync="dialogEdittVisible" width="700px" @close="closeDialog('formEdit')">
             <el-form :label-position="labelPosition" :label-width="labelWidth"  :disabled="formEditDisabled" :inline="true" ref="formEdit" :model="formEdit" class="demo-form-inline">
@@ -116,13 +115,12 @@
 
 <style>
 .messageboard{
-	height: 100%;
-	width: 100%;	
-}
-.messageContent{
-	height: 90%;
-	margin-top: 10px;
-	margin-left: 10px;
+		padding: 10px;
+    // 设置输入框的宽度
+    .el-form-item__content {
+        width: 220px;
+    }
+	
 }
 
 </style>

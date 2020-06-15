@@ -78,6 +78,7 @@
             display: flex;
 			
 			.home-head-left{
+				
 				flex: 5;
 			}
 			.home-head-right{
@@ -85,7 +86,7 @@
 			}
         }
         .home_content{
-            flex:8;
+            flex:10;
         
             display: flex;
 			height: 100%;
@@ -98,7 +99,7 @@
             .home_content_right{
                 flex:5;
 				width: 100%;
-                width: 100%;
+                width: 80%;
 				display: inline-block;
           
             }
@@ -116,6 +117,7 @@
 	}
 	.showPage .pageContent{
 		flex: 15;
+	
 		
 	}
 </style>

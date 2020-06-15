@@ -1,5 +1,5 @@
 <template>
-    <div class="messageboard">
+    <div class="messageboard1">
         <!-- 查询区----start -->
         <el-form :label-position="labelPosition" :label-width="labelWidth" :inline="true" ref="formSearch" :model="formSearch" class="demo-form-inline">
             <el-form-item label="活动名称" prop="qq">
@@ -27,24 +27,24 @@
         </el-row>
         <!-- 操作区----end -->
         <!-- 表格---start -->
-        <el-table :data="tableData" v-loading="listLoading"  border stripe @selection-change="handleSelectionChange">
-			<el-table-column type="selection" width="60">
-			</el-table-column>
-			<el-table-column prop="name" label="优惠券名称" width="150" align="center" sortable>
-				 <template slot-scope="scope">
-					<a href="javacript:;" style="color: #00D1B2" @click="openDetail(scope.row)">{{ scope.row.name}}</a>
-				</template>
-			</el-table-column>
-		   
-			 <el-table-column prop="age" label="内容描述" align="center" width="150">
-			</el-table-column>
+        <el-table :data="tableData" v-loading="listLoading"  border stripe style="width: 100%" @selection-change="handleSelectionChange">
+            <el-table-column type="selection" width="60">
+            </el-table-column>
+            <el-table-column prop="name" label="优惠卷名称" width="150" align="center" sortable>
+                 <template slot-scope="scope">
+                    <a href="javacript:;" style="color: #00D1B2" @click="openDetail(scope.row)">{{ scope.row.name}}</a>
+                </template>
+            </el-table-column>
+           
+             <el-table-column prop="age" label="内容描述" align="center" width="150">
+            </el-table-column>
 			<el-table-column prop="age" label="发布状态" align="center" width="100">
-			</el-table-column>
+            </el-table-column>
 
-			<el-table-column prop="createtime" label="起始日期"  width="130" sortable>
-			</el-table-column>
-			 <el-table-column prop="updatetime" label="终止日期"  width="130" sortable>
-			</el-table-column>
+            <el-table-column prop="createtime" label="起始日期"  width="130" sortable>
+            </el-table-column>
+             <el-table-column prop="updatetime" label="终止日期"  width="130" sortable>
+            </el-table-column>
 			<el-table-column prop="city" label="数量" align="center" width="130">
 			</el-table-column>
 			<el-table-column prop="type" label="领取人数" align="center" width="150">
@@ -116,9 +116,14 @@
 </template>
 
 <style>
-.messageboard{
-	width: 100%;
-	height: 100%;
+.messageboard1{
+
+	padding: 10px;
+    // 设置输入框的宽度
+    .el-form-item__content {
+        width: 220px;
+    }
+	
 }
 
 </style>
