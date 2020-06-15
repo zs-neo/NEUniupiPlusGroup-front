@@ -5,6 +5,9 @@ import Home from '@/views/Home.vue'
 import EventsManage from '../views/EventsManage/EventsManage.vue'
 import CountMange from '../views/CountManage/CountMange.vue'
 import RolesManage from '../views/homeSubs/PrivilegeManage/RolesManage.vue'
+import StatisticsManage from '../views/StatisticsManage/StatisticsManage.vue'
+import FlowManage from '../views/FlowManage/FlowManage.vue'
+
 Vue.use(VueRouter)
 
   const routes = [
@@ -47,6 +50,24 @@ Vue.use(VueRouter)
 			component: RolesManage,
 			meta:{
 				 title: "角色管理", 
+				 show: true
+			}
+		},
+		{
+			path: '/home/statisticsManage',
+			name: 'statisticsManage',
+			component: StatisticsManage,
+			meta:{
+				 title: "财务报表", 
+				 show: true
+			}
+		},
+		{
+			path: '/home/flowManage',
+			name: 'flowManage',
+			component: FlowManage,
+			meta:{
+				 title: "流量统计", 
 				 show: true
 			}
 		}
