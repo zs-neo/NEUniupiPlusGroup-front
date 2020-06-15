@@ -6,11 +6,14 @@ import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 import axios from 'axios'
 import VueAxios from 'vue-axios'
+import echarts from 'echarts'
 
 axios.defaults.withCredentials = true;
 Vue.use(VueAxios, axios);
 Vue.config.productionTip = false;
 Vue.use(ElementUI);
+
+Vue.prototype.$echarts = echarts 
 
 new Vue({
   router,
