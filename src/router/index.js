@@ -37,7 +37,6 @@ Vue.use(VueRouter)
   		  name: 'CountMange',
   		  component: CountMange,
   		},
-		},
 		{
 			path: '/home/rolesManage',
 			name: 'RolesManage',
