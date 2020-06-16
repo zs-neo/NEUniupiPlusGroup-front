@@ -1,45 +1,75 @@
 <template>
-	<div>
-		<div style="background: #F6FAFF;">
-			<div id="chartLineBox" style="width: 150vh;height: 50vh;"> </div>
-		</div>
-		<!-- 表格---start -->
-		<el-table :data="tableData" v-loading="listLoading" border stripe style="width: 100%" @selection-change="handleSelectionChange">
-			<el-table-column type="selection" width="60">
-			</el-table-column>
-			<el-table-column prop="name" label="活动编号" width="150" align="center" sortable>
-				<template slot-scope="scope">
-					<a href="javacript:;" style="color: #00D1B2" @click="openDetail(scope.row)">{{ scope.row.name}}</a>
-				</template>
-			</el-table-column>
-			<el-table-column prop="city" label="活动名称" align="center" width="130">
-			</el-table-column>
-			<el-table-column prop="type" label="活动图片" align="center" width="150">
-				<template slot-scope="scope" align="center" width="150">
-					<span>{{ scope.row.type |convertType}}</span>
-				</template>
-			</el-table-column>
-			<el-table-column prop="age" label="内容描述" align="center" width="150">
-			</el-table-column>
-			<el-table-column prop="age" label="发布状态" align="center" width="100">
-			</el-table-column>
-
-			<el-table-column prop="createtime" label="起始日期" width="130" sortable>
-			</el-table-column>
-			<el-table-column prop="updatetime" label="终止日期" width="130" sortable>
-			</el-table-column>
-			<el-table-column label="操作" fixed="right" min-width="230">
-				<template slot-scope="scope">
-					<el-button size="mini" plain type="primary" @click="handleDetail(scope.$index, scope.row)">上架</el-button>
-					<el-button size="mini" @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
-					<el-button size="mini" plain type="danger" @click="handleDelete(scope.$index, scope.row)">删除</el-button>
-				</template>
-			</el-table-column>
-		</el-table>
-		<el-pagination background layout="total,sizes,prev, pager, next,jumper" :current-page="pageInfo.currentPage"
-		 :page-size="pageInfo.pageSize" :total="pageInfo.pageTotal" :page-sizes="[5, 10, 20, 50]" @size-change="handleSizeChange"
-		 @current-change="handleCurrentChange">
-		</el-pagination>
+	<div id="page">
+		<el-row>
+			<el-col class="row" :span="18">
+				<el-card>
+					<div id="chartLineBox" class="graph"></div>
+				</el-card>
+			</el-col>
+			<el-col class="row" :span="6">
+				<el-card class="box-card" style="padding: 10px;">
+					<div class="bottom-desc">
+						<el-tag size="mini">小时</el-tag>
+						利润
+					</div>
+					<div>
+						<i style="font-size: 30px;color: darkgray;">
+							100000￥
+						</i>
+					</div>
+				</el-card>
+				<el-card class="box-card" style="padding: 10px;">
+					<div class="bottom-desc">
+						<el-tag size="mini">小时</el-tag>
+						交易总量
+					</div>
+					<div>
+						<i style="font-size: 30px;color: darkgray;">
+							100000￥
+						</i>
+					</div>
+				</el-card>
+			</el-col>
+		</el-row>
+		<el-row>
+			<el-col class="row" :span="24">
+				<el-card>
+					<el-table :data="tableData" v-loading="listLoading" border stripe style="width: 100%" @selection-change="handleSelectionChange">
+						<el-table-column type="selection" width="60">
+						</el-table-column>
+						<el-table-column prop="name" label="订单id" width="150" align="center" sortable>
+							<template slot-scope="scope">
+								<a href="javacript:;" style="color: #00D1B2" @click="openDetail(scope.row)">{{ scope.row.name}}</a>
+							</template>
+						</el-table-column>
+						<el-table-column prop="city" label="流水号" align="center" width="100">
+						</el-table-column>
+						<el-table-column prop="age" label="用户id" align="center" width="100">
+						</el-table-column>
+						<el-table-column prop="age" label="支付方式" align="center" width="100">
+						</el-table-column>
+						<el-table-column prop="age" label="总价" align="center" width="100">
+						</el-table-column>
+						<el-table-column prop="age" label="订单状态" align="center" width="100">
+						</el-table-column>
+						<el-table-column prop="createtime" label="创建时间" width="100" sortable>
+						</el-table-column>
+						<el-table-column prop="modifiedtime" label="修改时间" width="100" sortable>
+						</el-table-column>
+						<el-table-column label="操作" fixed="right" min-width="230">
+							<template slot-scope="scope">
+								<el-button size="mini" plain type="warning" @click="handleDetail(scope.$index, scope.row)">封禁用户</el-button>
+								<el-button size="mini" type="primary" @click="handleEdit(scope.$index, scope.row)">取消订单</el-button>
+							</template>
+						</el-table-column>
+					</el-table>
+					<el-pagination background layout="total,sizes,prev, pager, next,jumper" :current-page="pageInfo.currentPage"
+					 :page-size="pageInfo.pageSize" :total="pageInfo.pageTotal" :page-sizes="[5, 10, 20, 50]" @size-change="handleSizeChange"
+					 @current-change="handleCurrentChange">
+					</el-pagination>
+				</el-card>
+			</el-col>
+		</el-row>
 	</div>
 </template>
 
@@ -112,65 +142,155 @@
 		},
 		mounted() {
 			this.chartLine = echarts.init(document.getElementById('chartLineBox'));
-			// 指定图表的配置项和数据
 			var option = {
-				tooltip: { //设置tip提示
+				//标题，每个图表最多仅有一个标题控件，每个标题控件可设主副标题  
+				title: {
+					//主标题文本，'\n'指定换行  
+					text: '秘制厨房财务报表',
+					//主标题文本超链接  
+					link: 'http://www.tqyb.com.cn/weatherLive/climateForecast/2014-01-26/157.html',
+					//副标题文本，'\n'指定换行  
+					subtext: 'www.mizhicook.com',
+					//副标题文本超链接  
+					sublink: 'http://www.stepday.com/myblog/?Echarts',
+					//水平安放位置，默认为左侧，可选为：'center' | 'left' | 'right' | {number}（x坐标，单位px）  
+					x: 'left',
+					//垂直安放位置，默认为全图顶端，可选为：'top' | 'bottom' | 'center' | {number}（y坐标，单位px）  
+					y: 'top'
+				},
+				//提示框，鼠标悬浮交互时的信息提示  
+				tooltip: {
+					//触发类型，默认（'item'）数据触发，可选为：'item' | 'axis'  
 					trigger: 'axis'
 				},
-
-				legend: { //设置区分（哪条线属于什么）
-					data: ['订单数', '交易单数']
+				//图例，每个图表最多仅有一个图例  
+				legend: {
+					//显示策略，可选为：true（显示） | false（隐藏），默认值为true  
+					show: true,
+					//水平安放位置，默认为全图居中，可选为：'center' | 'left' | 'right' | {number}（x坐标，单位px）  
+					x: 'center',
+					//垂直安放位置，默认为全图顶端，可选为：'top' | 'bottom' | 'center' | {number}（y坐标，单位px）  
+					y: 'top',
+					//legend的data: 用于设置图例，data内的字符串数组需要与sereis数组内每一个series的name值对应  
+					data: ['利润', '交易量']
 				},
-				color: ['#8AE09F', '#FA6F53'], //设置区分（每条线是什么颜色，和 legend 一一对应）
-				xAxis: { //设置x轴
-					type: 'category',
-					boundaryGap: false, //坐标轴两边不留白
-					data: ['2019-1-1', '2019-2-1', '2019-3-1', '2019-4-1', '2019-5-1', '2019-6-1', '2019-7-1', ],
-					name: '时间', //X轴 name
-					nameTextStyle: { //坐标轴名称的文字样式
-						color: '#black',
-						fontSize: 16,
-						padding: [0, 0, 0, 20]
-					},
-					axisLine: { //坐标轴轴线相关设置。
-						lineStyle: {
-							color: '#black',
+				//工具箱，每个图表最多仅有一个工具箱  
+				toolbox: {
+					//显示策略，可选为：true（显示） | false（隐藏），默认值为false  
+					show: true,
+					//启用功能，目前支持feature，工具箱自定义功能回调处理  
+					feature: {
+						//辅助线标志  
+						mark: {
+							show: true
+						},
+						//dataZoom，框选区域缩放，自动与存在的dataZoom控件同步，分别是启用，缩放后退  
+						dataZoom: {
+							show: true,
+							title: {
+								dataZoom: '区域缩放',
+								dataZoomReset: '区域缩放后退'
+							}
+						},
+						//数据视图，打开数据视图，可设置更多属性,readOnly 默认数据视图为只读(即值为true)，可指定readOnly为false打开编辑功能  
+						dataView: {
+							show: true,
+							readOnly: true
+						},
+						//magicType，动态类型切换，支持直角系下的折线图、柱状图、堆积、平铺转换  
+						magicType: {
+							show: true,
+							type: ['line', 'bar']
+						},
+						//restore，还原，复位原始图表  
+						restore: {
+							show: true
+						},
+						//saveAsImage，保存图片（IE8-不支持）,图片类型默认为'png'  
+						saveAsImage: {
+							show: true
 						}
 					}
 				},
-				yAxis: {
-					name: '订单数',
-					nameTextStyle: {
-						color: '#black',
-						fontSize: 16,
-						padding: [0, 0, 10, 0]
-					},
-					axisLine: {
-						lineStyle: {
-							color: '#black',
+				//是否启用拖拽重计算特性，默认关闭(即值为false)  
+				calculable: true,
+				//直角坐标系中横轴数组，数组中每一项代表一条横轴坐标轴，仅有一条时可省略数值  
+				//横轴通常为类目型，但条形图时则横轴为数值型，散点图时则横纵均为数值型  
+				xAxis: [{
+					//显示策略，可选为：true（显示） | false（隐藏），默认值为true  
+					show: true,
+					//坐标轴类型，横轴默认为类目型'category'  
+					type: 'category',
+					//类目型坐标轴文本标签数组，指定label内容。 数组项通常为文本，'\n'指定换行  
+					data: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月']
+				}],
+				//直角坐标系中纵轴数组，数组中每一项代表一条纵轴坐标轴，仅有一条时可省略数值  
+				//纵轴通常为数值型，但条形图时则纵轴为类目型  
+				yAxis: [{
+					//显示策略，可选为：true（显示） | false（隐藏），默认值为true  
+					show: true,
+					//坐标轴类型，纵轴默认为数值型'value'  
+					type: 'value',
+					//分隔区域，默认不显示  
+					splitArea: {
+						show: true
+					}
+				}],
+
+				//sereis的数据: 用于设置图表数据之用。series是一个对象嵌套的结构；对象内包含对象  
+				series: [{
+						//系列名称，如果启用legend，该值将被legend.data索引相关  
+						name: '利润',
+						//图表类型，必要参数！如为空或不支持类型，则该系列数据不被显示。  
+						type: 'bar',
+						//系列中的数据内容数组，折线图以及柱状图时数组长度等于所使用类目轴文本标签数组axis.data的长度，并且他们间是一一对应的。数组项通常为数值  
+						data: [2.0, 4.9, 7.0, 23.2, 25.6, 76.7, 135.6, 162.2, 32.6, 20.0, 6.4, 3.3],
+						//系列中的数据标注内容  
+						markPoint: {
+							data: [{
+									type: 'max',
+									name: '最大值'
+								},
+								{
+									type: 'min',
+									name: '最小值'
+								}
+							]
+						},
+						//系列中的数据标线内容  
+						markLine: {
+							data: [{
+								type: 'average',
+								name: '平均值'
+							}]
 						}
 					},
-					type: 'value'
-				},
-				series: [{
-						name: '交易单数',
-						data: [220, 232, 201, 234, 290, 230, 220],
-						type: 'line', // 类型为折线图
-						lineStyle: { // 线条样式 => 必须使用normal属性
-							normal: {
-								color: '#8AE09F',
-							}
-						},
-					},
 					{
-						name: '订单数',
-						data: [120, 200, 150, 80, 70, 110, 130],
-						type: 'line',
-						lineStyle: {
-							normal: {
-								color: '#FA6F53',
-							}
+						//系列名称，如果启用legend，该值将被legend.data索引相关  
+						name: '交易量',
+						//图表类型，必要参数！如为空或不支持类型，则该系列数据不被显示。  
+						type: 'bar',
+						//系列中的数据内容数组，折线图以及柱状图时数组长度等于所使用类目轴文本标签数组axis.data的长度，并且他们间是一一对应的。数组项通常为数值  
+						data: [2.6, 5.9, 9.0, 26.4, 28.7, 70.7, 175.6, 182.2, 48.7, 18.8, 6.0, 2.3],
+						//系列中的数据标注内容  
+						markPoint: {
+							data: [{
+									type: 'max',
+									name: '最大值'
+								},
+								{
+									type: 'min',
+									name: '最小值'
+								}
+							]
 						},
+						//系列中的数据标线内容  
+						markLine: {
+							data: [{
+								type: 'average',
+								name: '平均值'
+							}]
+						}
 					}
 				]
 			};
@@ -184,15 +304,16 @@
 </script>
 
 <style>
-	html {
-		height: 100%;
-		width: 100%;
+	#page {
+		/* background: rgb(240, 240, 240); */
+		background: rgb(94, 183, 255, 0.1);
 	}
 
-	body {
-		height: 100%;
-		width: 100%;
-		margin: 0;
-		padding: 0;
+	.row {
+		padding: 10px;
+	}
+
+	.graph {
+		/* width: 800px; */
 	}
 </style>

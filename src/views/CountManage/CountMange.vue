@@ -32,12 +32,10 @@
 					<a href="javacript:;" style="color: #00D1B2" @click="openDetail(scope.row)">{{ scope.row.name}}</a>
 				</template>
 			</el-table-column>
-
 			<el-table-column prop="age" label="内容描述" align="center" width="150">
 			</el-table-column>
 			<el-table-column prop="age" label="发布状态" align="center" width="100">
 			</el-table-column>
-
 			<el-table-column prop="createtime" label="起始日期" width="130" sortable>
 			</el-table-column>
 			<el-table-column prop="updatetime" label="终止日期" width="130" sortable>
