@@ -6,6 +6,7 @@
 					<i style="transform: rotate(45deg);" class="el-icon-rank"></i>
 				</el-tooltip>
 			</div>
+			
 			<!-- 消息中心 -->
 			<div class="btn-bell">
 				<el-tooltip effect="dark" :content="message?`有${message}条未读消息`:`消息中心`" placement="bottom">
