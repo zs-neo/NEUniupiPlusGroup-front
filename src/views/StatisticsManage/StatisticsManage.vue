@@ -1,9 +1,17 @@
 <template>
 	<div id="page">
 		<el-row>
-			<el-col class="row" :span="18">
-				<el-card>
-					<div id="chartLineBox" class="graph"></div>
+			<el-col class="row" :span="6">
+				<el-card class="box-card" style="padding: 10px;">
+					<div class="bottom-desc">
+						<el-tag size="mini">小时</el-tag>
+						交易总量
+					</div>
+					<div>
+						<i style="font-size: 30px;color: darkgray;">
+							100000￥
+						</i>
+					</div>
 				</el-card>
 			</el-col>
 			<el-col class="row" :span="6">
@@ -18,18 +26,13 @@
 						</i>
 					</div>
 				</el-card>
-				<el-card class="box-card" style="padding: 10px;">
-					<div class="bottom-desc">
-						<el-tag size="mini">小时</el-tag>
-						交易总量
-					</div>
-					<div>
-						<i style="font-size: 30px;color: darkgray;">
-							100000￥
-						</i>
-					</div>
+			</el-col>
+			<el-col class="row" :span="24">
+				<el-card>
+					<div id="chartLineBox" class="graph"></div>
 				</el-card>
 			</el-col>
+			
 		</el-row>
 		<el-row>
 			<el-col class="row" :span="24">
