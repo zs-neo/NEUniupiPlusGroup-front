@@ -5,6 +5,8 @@ import Home from '@/views/Home.vue'
 import EventsManage from '../views/EventsManage/EventsManage.vue'
 import CountMange from '../views/CountManage/CountMange.vue'
 import RolesManage from '../views/homeSubs/PrivilegeManage/RolesManage.vue'
+import FoodManage from '../views/FoodManage/FoodManage.vue'
+import FoodTypeManage from '../views/FoodManage/FoodtypeManage.vue'
 Vue.use(VueRouter)
 
   const routes = [
@@ -23,6 +25,15 @@ Vue.use(VueRouter)
 		 show: true
 	},
 	children:[
+		{
+			path:'/home/foodtypeManage',
+			name:'FoodTypeManage',
+			component:FoodTypeManage,
+			meta:{
+				title:"美食分类管理",
+				show:true
+			}
+		},
 		{ 
 		  path: '/home/EventsManage',
 		  name: 'EventsManage',
@@ -49,7 +60,19 @@ Vue.use(VueRouter)
 				 title: "角色管理", 
 				 show: true
 			}
-		}
+		},
+		{
+			path:'/home/foodManage',
+			name:'FoodManage',
+			component:FoodManage,
+			meta:{
+				title:"美食信息管理",
+				show:true
+			}
+		},
+
+
+
 	],
   }
 ]
