@@ -37,7 +37,8 @@
 		color: #FFFFFF;
 	}
 	.head-left{
-		margin-left: 20px;
+		margin-left: 5px;
+		margin-top: -11px;
 		display: flex;
 		width: 300px;
 		height: 100%;

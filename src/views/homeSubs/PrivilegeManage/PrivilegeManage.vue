@@ -2,15 +2,13 @@
 	<div class="privilegeManage">
 		<div class="searchTab">
 			<div class="searchContent">
-				<el-form :inline="true" :model="formSearch" max-height=400px class="demo-form-inline" style="height: fit-content;">
-				  <el-form-item label="角色">
-				    <el-select v-model="formSearch.role" placeholder="请选择检索的角色">
-				      <el-option label="美食管理员" value="food"></el-option>
-				      <el-option label="活动运维员" value="event"></el-option>
-				      <el-option label="网络安全工程师" value="safety"></el-option>
-				      <el-option label="销售员" value="sale"></el-option>
-				      <el-option label="数据统计师" value="data"></el-option>
-				      <el-option label="超级管理员" value="superAdmin"></el-option>		  
+				<el-form :inline="true" :model="formSearch" class="demo-form-inline" style="height: fit-content;">
+				 <el-form-item label="用户名">
+					<el-input v-model="formSearch.username"></el-input>
+				  </el-form-item>
+				  <el-form-item label="权限">
+				    <el-select v-model="formSearch.privileges" placeholder="请选择检索的权限">
+				      <el-option v-for="privilegename in privilegeOptions" :label="privilegename" :value="privilegename"></el-option>	  
 				    </el-select>
 				  </el-form-item>
 				  <el-form-item label="创建时间">
@@ -37,38 +35,31 @@
 			
 		</div>
 		<div class="tableContent">
-			<el-table :data="roleInfo"  border stripe style="width: 100%" @selection-change="handleSelectionChange">
+			<el-table :data="privilegeInfo" max-height=400px border stripe style="width: 100%;" @selection-change="handleSelectionChange">
 			    <el-table-column type="selection" width="60" align="center">
 			    </el-table-column>
-				<el-table-column prop="pic" label="头像" align="center" width="150">
-				     <template slot-scope="scope" align="center" width="150">
-				        <img :src="scope.row.pic" />
-				    </template>
+			    <el-table-column prop="id" label="编号" width="80" align="center" sortable>
+			    </el-table-column>
+			    <el-table-column prop="username" label="用户名" align="center" width="120">
+			    </el-table-column>
+				<el-table-column prop="privilegename" label="权限" align="center" width="150">
+			    </el-table-column>
+				<el-table-column label="创建时间" prop="createtime" align="center" width="150">
 				</el-table-column>
-			    <el-table-column prop="id" label="编号" width="100" align="center" sortable>
-			    </el-table-column>
-			    <el-table-column prop="username" label="用户名" align="center" width="150">
-			    </el-table-column>
-			    
-			     <el-table-column prop="phone" label="手机" align="center" width="150">
-			    </el-table-column>
-				<el-table-column prop="rolename" label="角色" align="center" width="150">
-					
-			    </el-table-column>
+				<el-table-column label="创建员编号" prop="create_admin_id" align="center" width="100">
+				</el-table-column>
+				<el-table-column label="修改时间" prop="modifytime" align="center" width="150">
+				</el-table-column>
+				<el-table-column label="更新员编号" prop="modify_admin_id" align="center" width="100">
+				</el-table-column>
 				<el-table-column prop="status" label="是否已启用" align="center" width="120">
 					<template slot-scope="scope">
 						<el-button size="mini" :style='scope.row.status==1?validStyle:invalidStyle' disabled round>{{scope.row.status==1?valid:invalid}}</el-button>
 					</template>
 					
 			    </el-table-column>
-				<el-table-column label="创建时间" prop="createtime" align="center" width="120">
-				    <!-- <el-date-picker
-				        v-model="roleInfo.createtime"
-				        type="date"
-				        placeholder="创建日期">
-				    </el-date-picker> -->
-				</el-table-column>
-			    <el-table-column label="操作" align="center">
+				
+			    <el-table-column label="操作" align="center" width="235">
 			        <template slot-scope="scope">
 						<el-button size="mini" type="primary" :icon="modifyIcon(scope.$index)" circle></el-button>
 						<el-button size="mini" type="primary" icon="el-icon-edit" circle></el-button>
@@ -94,29 +85,74 @@
 	data() {
 	  return {
 		formSearch: {
-		  role: '',
-		  createTime: ''
+		  privilages: '',
+		  createTime: '',
+		  username: ''
 		},
 		pageInfo:{
 			currentPage:1,
 			total:100,
 			pageSize:20,	
 		},
-		roleInfo:[
+		privilegeInfo:[
 			{
-			pic:'',
 			id:1,
 			username:"admin",
-			phone:'13200000000',
-			rolename:'超级管理员',
+			privilegename:'权限管理',
 			status:1,
 			createtime:'2020-06-14',},
 			{
-			pic:'',
 			id:2,
 			username:"xiaxia",
 			phone:'13200000001',
-			rolename:'数据统计师',
+			privilegename:'报表统计',
+			status:0,
+			createtime:'2020-06-14',},
+			{
+			id:2,
+			username:"xiaxia",
+			phone:'13200000001',
+			privilegename:'报表统计',
+			status:0,
+			createtime:'2020-06-14',},
+			{
+			id:2,
+			username:"xiaxia",
+			phone:'13200000001',
+			privilegename:'报表统计',
+			status:0,
+			createtime:'2020-06-14',},
+			{
+			id:2,
+			username:"xiaxia",
+			phone:'13200000001',
+			privilegename:'报表统计',
+			status:0,
+			createtime:'2020-06-14',},{
+			id:2,
+			username:"xiaxia",
+			phone:'13200000001',
+			privilegename:'报表统计',
+			status:0,
+			createtime:'2020-06-14',},{
+			id:2,
+			username:"xiaxia",
+			phone:'13200000001',
+			privilegename:'报表统计',
+			status:0,
+			createtime:'2020-06-14',},
+			{
+			id:2,
+			username:"xiaxia",
+			phone:'13200000001',
+			privilegename:'报表统计',
+			status:0,
+			createtime:'2020-06-14',},
+			{
+			id:2,
+			username:"xiaxia",
+			phone:'13200000001',
+			privilegename:'报表统计',
 			status:0,
 			createtime:'2020-06-14',},
 			
@@ -127,6 +163,7 @@
 		invalid: '已停用',
 		validStyle: 'color:#fff;background-color: lightgreen;',
 		invalidStyle: 'color:#fff;background-color: lightgray;',
+		privilegeOptions:['美食管理','美食类别管理','限时活动','优惠券',],
 	  }
 	},
 	methods: {
@@ -137,7 +174,7 @@
 	      this.multipleSelection = val;
 	  },
 	  modifyIcon(index){
-		  if(this.roleInfo[index].status==1){
+		  if(this.privilegeInfo[index].status==1){
 			  return 'el-icon-remove-outline';
 		  }else{
 			  return 'el-icon-circle-check';
@@ -165,7 +202,7 @@
 	.privilegeManage .tableContent{
 		flex: 8;
 		background-color: lightsalmon;
-		overflow: auto;
+		overflow: hidden;
 	}
 	.privilegeManage .pageTab{
 		flex: 1;

@@ -25,8 +25,7 @@
 					</span>
 					
 					<el-dropdown-menu slot="dropdown">
-						
-						<a  href="" >
+						<a href="" >
 							<el-dropdown-item>我的信息</el-dropdown-item>
 						</a>
 						<el-dropdown-item divided  command="loginout">退出登录</el-dropdown-item>
@@ -149,11 +148,10 @@
     }
     .user-avator img{
         border-radius: 50%;
-		height: 45px;
-		width: 45px;
+		height: 40px;
+		width: 40px;
 		position: absolute;
 		top: 25%;
-		
     }
     .el-dropdown-link{
         color: #fff;

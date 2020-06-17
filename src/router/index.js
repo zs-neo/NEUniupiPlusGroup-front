@@ -5,8 +5,14 @@ import Home from '@/views/Home.vue'
 import EventsManage from '../views/EventsManage/EventsManage.vue'
 import CountMange from '../views/CountManage/CountMange.vue'
 import RolesManage from '../views/homeSubs/PrivilegeManage/RolesManage.vue'
+<<<<<<< HEAD
 import FoodManage from '../views/FoodManage/FoodManage.vue'
 import FoodTypeManage from '../views/FoodManage/FoodtypeManage.vue'
+=======
+import PrivilegeManage from '../views/homeSubs/PrivilegeManage/PrivilegeManage.vue'
+import StatisticsManage from '../views/StatisticsManage/StatisticsManage.vue'
+import FlowManage from '../views/FlowManage/FlowManage.vue'
+>>>>>>> 48ef15429c8d033a2b128877c1b39efc920a91f8
 Vue.use(VueRouter)
 
   const routes = [
@@ -62,6 +68,7 @@ Vue.use(VueRouter)
 			}
 		},
 		{
+<<<<<<< HEAD
 			path:'/home/foodManage',
 			name:'FoodManage',
 			component:FoodManage,
@@ -73,6 +80,34 @@ Vue.use(VueRouter)
 
 
 
+=======
+			path: '/home/privilegeManage',
+			name: 'PrivilegeManage',
+			component: PrivilegeManage,
+			meta:{
+				 title: "权限管理", 
+				 show: true
+			}
+		},
+		{
+			path: '/home/statisticsManage',
+			name: 'statisticsManage',
+			component: StatisticsManage,
+			meta:{
+				 title: "财务报表", 
+				 show: true
+			}
+		},
+		{
+			path: '/home/flowManage',
+			name: 'flowManage',
+			component: FlowManage,
+			meta:{
+				 title: "流量统计", 
+				 show: true
+			}
+		}
+>>>>>>> 48ef15429c8d033a2b128877c1b39efc920a91f8
 	],
   }
 ]
