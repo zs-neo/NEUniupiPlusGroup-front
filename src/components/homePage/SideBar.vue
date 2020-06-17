@@ -1,24 +1,5 @@
 <template>
 	<div class="sideBar">
-<<<<<<< HEAD
-		<el-menu class="sidebar-el-menu"  background-color="#324157"
-		    text-color="#bfcbd9" active-text-color="#20a0ff"  :router="true">
-		  <el-submenu index="1">
-			<template slot="title">
-			  <i class="el-icon-location"></i>
-			  <span>美食信息管理</span>
-			</template>
-			  <el-menu-item index='/home/foodManage'>
-				  <span>美食信息管理</span>
-			  </el-menu-item>
-			  <el-menu-item index='/home/foodtypeManage'>
-					<span>美食分类管理</span>
-			  </el-menu-item>
-			  
-
-		   </el-submenu>
-	           <el-submenu index="2">
-=======
 
 		<transition name="el-zoom-in-center" >
 			<el-menu
@@ -33,7 +14,7 @@
 			  :router="true"
 			  :unique-opened=true>
 			  <el-submenu index="1">
->>>>>>> 48ef15429c8d033a2b128877c1b39efc920a91f8
+
 				<template slot="title">
 
 				  <i class="el-icon-fork-spoon"></i>
@@ -41,12 +22,12 @@
 				</template>
 				  
 				
-				  <el-menu-item index="2">
-					  <span>美食管理</span>
-				  </el-menu-item>
-				  <el-menu-item index="1-2">
-					  <span>美食类别管理</span>
-				  </el-menu-item>
+			  <el-menu-item index='/home/foodManage'>
+				  <span>美食信息管理</span>
+			  </el-menu-item>
+			  <el-menu-item index='/home/foodtypeManage'>
+					<span>美食分类管理</span>
+			  </el-menu-item>
 			   </el-submenu>
 				   <el-submenu index="2">
 					<template slot="title">
