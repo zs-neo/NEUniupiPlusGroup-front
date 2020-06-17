@@ -80,7 +80,7 @@ Vue.use(VueRouter)
 
 
 
-
+		{
 			path: '/home/privilegeManage',
 			name: 'PrivilegeManage',
 			component: PrivilegeManage,
