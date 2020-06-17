@@ -12,6 +12,7 @@
     "echarts": "^4.8.0",
     "element-ui": "^2.13.2",
     "less-loader": "^6.1.1",
+    "save": "^2.4.0",
     "vue": "^2.6.10",
     "vue-axios": "^2.1.5",
     "vue-router": "^3.3.4",
