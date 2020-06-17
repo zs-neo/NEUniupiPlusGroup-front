@@ -7,7 +7,8 @@ import CountMange from '../views/CountManage/CountMange.vue'
 import RolesManage from '../views/homeSubs/PrivilegeManage/RolesManage.vue'
 import PrivilegeManage from '../views/homeSubs/PrivilegeManage/PrivilegeManage.vue'
 import StatisticsManage from '../views/StatisticsManage/StatisticsManage.vue'
-import FlowManage from '../views/FlowManage/FlowManage.vue'Vue.use(VueRouter)
+import FlowManage from '../views/FlowManage/FlowManage.vue'
+Vue.use(VueRouter)
 
   const routes = [
   {
