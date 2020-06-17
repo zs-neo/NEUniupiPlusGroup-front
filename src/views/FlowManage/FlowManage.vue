@@ -156,7 +156,7 @@
 				</el-col>
 				<el-col :span="12" style="padding: 10px;">
 					<el-card class="box-card" style="padding: 10px;">
-						<div class="bottom-desc">待支付订单</div>
+						<div class="bottom-desc">待付订单</div>
 						<div>
 							<i class="el-icon-edit-outline" style="font-size: 30px;color: darkgray;"></i>
 						</div>
