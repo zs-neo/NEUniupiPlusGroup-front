@@ -1,6 +1,34 @@
 <template>
-	<div id="page">
+	<div class="page">
 		<el-row>
+			<el-col class="row" :span="6">
+				<el-card class="box-card" style="padding: 10px;">
+					<div class="bottom-desc">
+						<el-tag size="mini">小时</el-tag>
+						成交订单
+					</div>
+					<div>
+						<i style="font-size: 30px;color: darkgray;">
+							100000
+							<i class="el-icon-circle-check"></i>
+						</i>
+					</div>
+				</el-card>
+			</el-col>
+			<el-col class="row" :span="6">
+				<el-card class="box-card" style="padding: 10px;">
+					<div class="bottom-desc">
+						<el-tag size="mini">天</el-tag>
+						活跃用户
+					</div>
+					<div>
+						<i style="font-size: 30px;color: darkgray;">
+							100000
+							<i class="el-icon-user-solid"></i>
+						</i>
+					</div>
+				</el-card>
+			</el-col>
 			<el-col class="row" :span="6">
 				<el-card class="box-card" style="padding: 10px;">
 					<div class="bottom-desc">
@@ -32,7 +60,7 @@
 					<div id="chartLineBox" class="graph"></div>
 				</el-card>
 			</el-col>
-			
+
 		</el-row>
 		<el-row>
 			<el-col class="row" :span="24">
@@ -307,9 +335,10 @@
 </script>
 
 <style>
-	#page {
-		/* background: rgb(240, 240, 240); */
-		background: rgb(94, 183, 255, 0.1);
+	.page {
+		/* background: #5390A3; */
+		/* background: rgb(94, 183, 255, 0.1); */
+		background: rgb(50, 65, 87, 0.1);
 	}
 
 	.row {

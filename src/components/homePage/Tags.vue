@@ -102,7 +102,7 @@
         position: relative;
         height: 100%;
         overflow: hidden;
-        background: #fff;
+        background: #black;
         padding-right: 120px;
         flex: 0 0 auto;
     }
@@ -124,19 +124,22 @@
         cursor: pointer;
         height: 70%;
         border: 1px solid #e9eaec;
-        background: lawngreen;
+        background: #F6F6F6;
         padding: 0 5px 0 12px;
         vertical-align: middle;
-        color: #666;
+        color: black;
         transition: all .3s ease-in;
     }
 
     .tags-li:not(.active):hover {
-        background: #f8f8f8;
+        /* background: #f8f8f8; */
+		background: rgb(50,65,87,0.1);
     }
 
     .tags-li.active {
         color: #fff;
+		/* background: #324157; */
+		background: rgb(50,65,87,0.7);
     }
 
     .tags-li-title {
@@ -151,7 +154,7 @@
     }
 
     .tags-li.active .tags-li-title {
-        color: #fff;
+        color: white;
     }
 
     .tags-close-box {

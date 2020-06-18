@@ -13,7 +13,10 @@
 					</el-row>
 					<el-row :gutter="20">
 						<el-col :span="12">
-							<span class="number">10,000</span>
+							<el-popover placement="top-start" title="访问量" width="200" trigger="hover" content="本周的用户访问量统计">
+								<!-- <el-button slot="reference">hover 激活</el-button> -->
+								<span class="number" slot="reference">10,000</span>
+							</el-popover>
 						</el-col>
 					</el-row>
 					<el-row :gutter="20">
@@ -40,7 +43,10 @@
 					</el-row>
 					<el-row :gutter="20">
 						<el-col :span="12">
-							<span class="number">10,000</span>
+							<el-popover placement="top-start" title="订单数" width="200" trigger="hover" content="本周的订单数统计">
+								<!-- <el-button slot="reference">hover 激活</el-button> -->
+								<span class="number" slot="reference">10,000</span>
+							</el-popover>
 						</el-col>
 					</el-row>
 					<el-row :gutter="20">
@@ -67,7 +73,10 @@
 					</el-row>
 					<el-row :gutter="20">
 						<el-col :span="12">
-							<span class="number">10,000</span>
+							<el-popover placement="top-start" title="交易量" width="200" trigger="hover" content="本周的总交易量统计">
+								<!-- <el-button slot="reference">hover 激活</el-button> -->
+								<span class="number" slot="reference">10,000</span>
+							</el-popover>
 						</el-col>
 					</el-row>
 					<el-row :gutter="20">
@@ -88,10 +97,16 @@
 						<el-col :span="6">
 							<span class="desc">活跃用户</span>
 						</el-col>
+						<el-col :span="6" :offset="12">
+							<el-tag size="mini">周</el-tag>
+						</el-col>
 					</el-row>
 					<el-row :gutter="20">
 						<el-col :span="12">
-							<span class="number">10,000</span>
+							<el-popover placement="top-start" title="活跃用户" width="200" trigger="hover" content="本周的总活跃用户统计">
+								<!-- <el-button slot="reference">hover 激活</el-button> -->
+								<span class="number" slot="reference">10,000</span>
+							</el-popover>
 						</el-col>
 					</el-row>
 					<el-row :gutter="20">
@@ -149,7 +164,9 @@
 						</div>
 						<div>
 							<i class="el-icon-user" style="font-size: 30px;color: darkgray;">
-								100000
+								<el-popover placement="top-start" title="在线用户" width="200" trigger="hover" content="当前在线的用户数量">
+									<span slot="reference">10,000</span>
+								</el-popover>
 							</i>
 						</div>
 					</el-card>
@@ -160,9 +177,9 @@
 						<div>
 							<i class="el-icon-edit-outline" style="font-size: 30px;color: darkgray;"></i>
 						</div>
-						<el-button type="primary" size="mini" style="color: white;">
-							100000
-						</el-button>
+						<el-popover placement="top-start" title="待支付订单" width="200" trigger="hover" content="已经下单但还未支付的订单数">
+							<span class="bottom-desc" slot="reference">10,000</span>
+						</el-popover>
 					</el-card>
 				</el-col>
 				<el-col :span="12" style="padding: 10px;">
@@ -172,9 +189,9 @@
 							<i class="el-icon-delete-solid
 " style="font-size: 30px;color: darkgray;"></i>
 						</div>
-						<el-button type="warning" size="mini" style="color: white;">
-							100000
-						</el-button>
+						<el-popover placement="top-start" title="封禁用户数" width="200" trigger="hover" content="因为异常操作或异常订单而被封禁的用户">
+							<span class="bottom-desc" slot="reference">10,000</span>
+						</el-popover>
 					</el-card>
 				</el-col>
 				<el-col :span="12" style="padding: 10px;">
@@ -183,9 +200,9 @@
 						<div>
 							<i class="el-icon-warning" style="font-size: 30px;color: darkgray;"></i>
 						</div>
-						<el-button type="danger" size="mini" style="color: white;">
-							100000
-						</el-button>
+						<el-popover placement="top-start" title="异常订单" width="200" trigger="hover" content="异常的订单数量">
+							<span class="bottom-desc" slot="reference">10,000</span>
+						</el-popover>
 					</el-card>
 				</el-col>
 				<el-col :span="12" style="padding: 10px;">
@@ -194,9 +211,9 @@
 						<div>
 							<i class="el-icon-error" style="font-size: 30px;color: darkgray;"></i>
 						</div>
-						<el-button type="danger" size="mini" style="color: white;">
-							100000
-						</el-button>
+						<el-popover placement="top-start" title="报警" width="200" trigger="hover" content="安全报警次数">
+							<span class="bottom-desc" slot="reference">10,000</span>
+						</el-popover>
 					</el-card>
 				</el-col>
 			</el-col>
@@ -299,7 +316,8 @@
 <style>
 	#page {
 		/* background: rgb(240, 240, 240); */
-		background: rgb(94, 183, 255, 0.1);
+		/* background: rgb(94, 183, 255, 0.1); */
+		background: rgb(50, 65, 87, 0.1);
 	}
 
 	.row {
