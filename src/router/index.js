@@ -3,7 +3,7 @@ import VueRouter from 'vue-router'
 import Login from '@/views/Login.vue'
 import Home from '@/views/Home.vue'
 import EventsManage from '../views/EventsManage/EventsManage.vue'
-import CountMange from '../views/CountManage/CountMange.vue'
+import CouponMange from '../views/CouponManage/CouponMange.vue'
 import RolesManage from '../views/homeSubs/PrivilegeManage/RolesManage.vue'
 
 import FoodManage from '../views/FoodManage/FoodManage.vue'
@@ -41,7 +41,7 @@ Vue.use(VueRouter)
 			}
 		},
 		{ 
-		  path: '/home/EventsManage',
+		  path: '/home/eventsManage',
 		  name: 'EventsManage',
 		  component: EventsManage,
 		  meta:{
@@ -50,9 +50,9 @@ Vue.use(VueRouter)
 		  }
 		},
   		{
-  		  path: '/home/CountMange',
-  		  name: 'CountMange',
-  		  component: CountMange,
+  		  path: '/home/couponMange',
+  		  name: 'CouponMange',
+  		  component: CouponMange,
 		  meta:{
 			 title: "优惠券", 
 			 show: true
