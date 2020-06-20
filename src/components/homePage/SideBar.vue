@@ -35,10 +35,10 @@
 					  <span>活动管理</span>
 					</template>
 					
-					  <el-menu-item index="/home/EventsManage">
+					  <el-menu-item index="/home/eventsManage">
 						  <span>限时活动</span>
 					  </el-menu-item>
-					  <el-menu-item index="/home/CountMange">
+					  <el-menu-item index="/home/couponMange">
 						  <span>优惠券</span>
 					  </el-menu-item>
 				   </el-submenu>
