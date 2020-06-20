@@ -25,8 +25,9 @@
         <!-- 查询区----end -->
         <!-- 操作区----start -->
         <el-row style="float:left">
-            <el-button size="small" round type="primary" @click="handleAdd">新增</el-button>
-            <el-button size="small" round type="danger">批量删除</el-button>
+	
+            <el-button size="small" round type="primary" @click="handleAdd">新增	<i class="el-icon-circle-plus-outline"></i></el-button>
+            <el-button size="small" round type="danger">批量删除<i class="el-icon-remove-outline"></i></el-button>
         </el-row>
         <!-- 操作区----end -->
         <!-- 表格---start -->
