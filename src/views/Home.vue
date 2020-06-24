@@ -108,7 +108,7 @@
 
 			.home_content_right {
 				flex: 5;
-
+			
 				width: 80%;
 				display: inline-block;
 
@@ -130,7 +130,7 @@
 
 	.showPage .pageContent {
 		flex: 15;
-
+	
 
 	}
 </style>

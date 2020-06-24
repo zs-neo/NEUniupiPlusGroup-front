@@ -1,5 +1,7 @@
 <template>
     <div class="messageboard">
+
+		   
         <!-- 查询区----start -->
         <el-form :label-position="labelPosition" :label-width="labelWidth" :inline="true" ref="formSearch" :model="formSearch" class="demo-form-inline">
             <el-form-item label="活动名称" prop="eventname">
@@ -26,9 +28,9 @@
         <!-- 查询区----end -->
         <!-- 操作区----start -->
         <el-row style="float:left;padding-bottom: 10px;">
-	
-            <el-button size="small" round type="primary" @click="handleAdd">新增	<i class="el-icon-circle-plus-outline"></i></el-button>
-            <el-button size="small" round type="danger"@click="deleteMany">批量删除<i class="el-icon-remove-outline"></i></el-button>
+	     <el-button size="small" round type="success" @click="handFr">管理满减<i class="el-icon-edit"></i></el-button>
+            <el-button size="small" round type="primary" @click="handleAdd">新增	活动<i class="el-icon-circle-plus-outline"></i></el-button>
+            <el-button size="small" round type="danger"@click="deleteMany">批量删除<i class="el-icon-delete"></i></el-button>
         </el-row>
         <!-- 操作区----end -->
         <!-- 表格---start -->
@@ -42,7 +44,8 @@
             </el-table-column>
             <el-table-column prop="epic" label="滚动栏图片" align="center" width="150">
 				 <template slot-scope="scope">
-                <el-image   :src="`${imgP}${scope.row.epic}`":preview-src-list="[`${imgP}${scope.row.epic}`,`${imgP}${scope.row.edetailpic}`]" width="140" height="40" ></el-image>
+                <el-image   :src="`${imgP}${scope.row.epic}`":preview-src-list=
+				"[`${imgP}${scope.row.epic}`,`${imgP}${scope.row.edetailpic}`]" width="140" height="40" ></el-image>
 			     </template>
             </el-table-column>
              <el-table-column prop="edesc" label="内容描述" align="center" width="180">
@@ -132,7 +135,6 @@
 				</el-form-item>	
 					<el-form-item label="上传活动详图:":required="true" prop="edetailpic" :label-width="formLabelWidth" style="margin-left: 40px;">
 					<el-upload 
-			
 					  class="avatar-uploader"
 					   :auto-upload="false"
 					  :before-upload="beforeAvatarUpload"
@@ -157,13 +159,15 @@
         </el-dialog>
 
         <!-- 编辑弹框---end -->
-
+		<FullReduct ref="fullreduct"></FullReduct>
+		
     </div>
 </template>
 
 
 
 <script>
+	import FullReduct from '../../components/EventPage/FullReduct.vue';
 	let server = "http://localhost:8081";
 	let getAllByPage='/event/getAllByPage';
 	let search='/event/fuzzySearch';
@@ -173,6 +177,7 @@
 	let updateEvent="/event/updateEvent";
 	let deleteBatch="/event/deleteBatch";
     let uploadPic="/event/uploadPic";
+
 export default {
     name: 'EventsManage',
     data() {
@@ -186,9 +191,25 @@ export default {
 			Events: [],
 			eventid:"",//修改数据时使用
 			epic:"",
+			fullmoney:"",
 			edetailpic:"",
-			updateUrl:"https://jsonplaceholder.typicode.com/posts/",//http://localhost:8081/uploadpic",
-            formSearch: { //表单查询
+			valid: '已上架',
+			invalid: '已下架',
+			validStyle: 'color:#fff;background-color: lightgreen;',
+			invalidStyle: 'color:#fff;background-color: lightgray;',
+			unuserStyle:'primary',
+			useStyle:'warning',
+			formEditTitle:'编辑',//新增，编辑和查看标题
+			formEditDisabled:false,//编辑弹窗是否可编辑
+			dialogEdittVisible: false,  //编辑弹框显示
+			dialogType:'',//弹框类型：add,edit,show
+			labelPosition: 'right', //lable对齐方式
+			labelWidth: '80px', //lable宽度
+			formLabelWidth: '120px',
+			multipleSelection: [],
+			fileList:[],
+			dialogVisible: false,
+			formSearch: { //表单查询
                 eventname: '',
 				time:'',
             },
@@ -198,9 +219,8 @@ export default {
 				edesc:"",
 				edetailpic:"",
 				epic:"",
-				
-              
             },
+	
 			rulesEdit:  {
 			    ename: [
 			        { required: true, message: "请输入活动名称", trigger: "blur" },
@@ -234,37 +254,20 @@ export default {
 			            }
 			          }]
 			        },
-			value2: '',
-			textarea: '',
-			valid: '已上架',
-			invalid: '已下架',
-			validStyle: 'color:#fff;background-color: lightgreen;',
-			invalidStyle: 'color:#fff;background-color: lightgray;',
-			unuserStyle:'primary',
-			useStyle:'warning',
-            formEditTitle:'编辑',//新增，编辑和查看标题
-            formEditDisabled:false,//编辑弹窗是否可编辑
-            dialogEdittVisible: false,  //编辑弹框显示
-            dialogType:'',//弹框类型：add,edit,show
-			labelPosition: 'right', //lable对齐方式
-			labelWidth: '80px', //lable宽度
-			formLabelWidth: '120px',
-			multipleSelection: [],
-			fileList:[],
-			dialogVisible: false,
+		
 				};
 			},
 		
-    computed:{
-        myheader(){
-			return {
-					'content-Type':'multipart/form-data',
-					
-			};
-		}
-    },
+	components: {
+				FullReduct,
+		},
    
     methods: {
+		//处理满减管理
+        handFr(){
+			 this.$refs.fullreduct.handFr();
+		},
+		
 		
 		//重置搜索区
 		onReset(formname){		
@@ -492,8 +495,6 @@ export default {
 									this.$message({message: '添加失败,请重新尝试！', type: 'error', center: true});
 								}			
 							});
-				}else{
-					this.$message({message: '添加失败,请重新尝试！', type: 'error', center: true});
 				}
 		},
 		//修改活动信息
@@ -590,7 +591,8 @@ export default {
 		 }
 	  		reader.readAsDataURL(file);
 
-	  },	  
+	  },	
+	  
 			  // 将页码，及每页显示的条数以参数传递提交给后台
 			  	getData(){	 
 			  	   this.axios.get(`${server}${getAllByPage}`,{params:{
@@ -610,11 +612,9 @@ export default {
 			  		if(this.isSearch==false){
 			  			this.getData();
 			  		}else{
-			  			this.fuzzySearch();
-			  		 
+			  			this.fuzzySearch();		  		 
 			  		}
 			  			this.currentPage=1 ;
-			  
 			    },
 			     // 显示第几页
 			    handleCurrentChange(val) {
@@ -630,7 +630,8 @@ export default {
 			  
 			created:function(){			
 			  	this.getData(this.PageSize,this.currentPage) ;
-			  				
+			  	 
+			  	 	
 			},
 			 
 
@@ -652,6 +653,8 @@ export default {
 	    position: relative;
 	    overflow: hidden;
 		margin-left: -300px;
+		width: 150px;
+		height: 150px;
 		
 	  }
 	  .avatar-uploader .el-upload:hover {
@@ -659,17 +662,16 @@ export default {
 	  }
 	  .avatar-uploader-icon {
 	    font-size: 28px;
-	
 	    color: #8c939d;
-	    width: 150px;
-	    height: 150px;
+	    width: 200px;
+	    height: 200px;
 	    line-height: 150px;
 	    text-align: center;
 		
 	  }
 	  .avatars {
-	    width: 160px;
-	    height: 160px;
+	    width: 150px;
+	    height: 150px;
 	    display: block;
 	
 }

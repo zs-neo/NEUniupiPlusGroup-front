@@ -32,7 +32,8 @@
         </el-row>
         <!-- 操作区----end -->
         <!-- 表格---start -->
-		<div class="tableContent">
+
+<div class="tableContent">
         <el-table :data="coupons" v-loading="listLoading" border stripe max-height="500px"@selection-change="handleSelectionChange">
             <el-table-column type="selection" width="60">
             </el-table-column>
@@ -94,10 +95,10 @@
 			   <el-tooltip content="这是必填字段" placement="left-start">
 			   <el-form-item label="优惠卷名称:" :label-width="formLabelWidth" prop="fullmoney">
 			    <div>
-			      <el-input placeholder="请输入数字" v-model="formEdit.fullmoney" style="width: 270px;" >
+			      <el-input placeholder="门槛金额" type="number" v-model="formEdit.fullmoney" style="width: 270px;" >
 			        <template slot="prepend" margin-left="10px">金额满</template>
 			      </el-input>
-				    <el-input placeholder="请输入数字" v-model="formEdit.substractmoney"style="width: 270px;">
+				    <el-input placeholder="力度金额" type="number" v-model="formEdit.substractmoney"style="width: 270px;">
 				      <template slot="prepend">元减</template>
 					  <template slot="append">元卷</template>
 				    </el-input>
@@ -538,7 +539,7 @@ export default {
                 this.formEditTitle='编辑优惠卷';
                 this.formEditDisabled=false;
 				var str = rowData.couponname;
-				var numArr = str.match(/\d+/g);
+				var numArr = str.match(/\d+/g);//分割出数字
 				this.couponid=rowData.couponid;//便于修改时拿到id
                 this.formEdit.couponamount=rowData.couponamount;
 				this.formEdit.couponscore=rowData.couponscore;
