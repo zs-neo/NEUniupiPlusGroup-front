@@ -6,7 +6,7 @@
                     {{item.title}}
                 </router-link>
                 
-                <span v-show="item.title!='首页'" class="tags-li-icon" @click="closeTags(index)"><i class="el-icon-close"></i></span>
+                <span v-show="item.title!='个人中心'" class="tags-li-icon" @click="closeTags(index)"><i class="el-icon-close"></i></span>
             </li>
         </ul>
         <div class="tags-close-box">
@@ -49,11 +49,11 @@
             // 关闭全部标签
             closeAll(){
                 this.tagsList = [{
-                    name: "home",
-                    path: "/home",
-                    title: "首页"
+                    name: "MineCenter",
+                    path: "/home/mineCenter",
+                    title: "个人中心"
                 }];
-                this.$router.push('/home');
+                this.$router.push('/home/mineCenter');
             },
             // 关闭其他标签
             closeOther(){

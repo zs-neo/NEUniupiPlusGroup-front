@@ -12,7 +12,7 @@ import FoodTypeManage from '../views/FoodManage/FoodtypeManage.vue'
 import PrivilegeManage from '../views/homeSubs/PrivilegeManage/PrivilegeManage.vue'
 import StatisticsManage from '../views/StatisticsManage/StatisticsManage.vue'
 import FlowManage from '../views/FlowManage/FlowManage.vue'
-
+import MineCenter from '../views/homeSubs/MineCenter.vue'
 Vue.use(VueRouter)
 
   const routes = [
@@ -26,10 +26,11 @@ Vue.use(VueRouter)
     path: '/home',
     name: 'Home',
     component: Home,
-	meta:{
-		 title: "首页", 
-		 show: true
-	},
+
+	// meta:{
+	// 	 title: "首页", 
+	// 	 show: false
+	// },
 	children:[
 		{
 			path:'/home/foodtypeManage',
@@ -41,6 +42,7 @@ Vue.use(VueRouter)
 			}
 		},
 		{ 
+
 		  path: '/home/eventsManage',
 		  name: 'EventsManage',
 		  component: EventsManage,
@@ -50,6 +52,7 @@ Vue.use(VueRouter)
 		  }
 		},
   		{
+
   		  path: '/home/couponMange',
   		  name: 'CouponMange',
   		  component: CouponMange,
@@ -106,9 +109,19 @@ Vue.use(VueRouter)
 				 title: "流量统计", 
 				 show: true
 			}
+		},
+		{
+			path: '/home/mineCenter',
+			name: "MineCenter",
+			component: MineCenter,
+			meta:{
+				title:"个人中心",
+				show:true
+			}
 		}
 
 	],
+	redirect: '/home/mineCenter'
   }
 ]
 
@@ -120,7 +133,19 @@ const router = new VueRouter({
 
 export default router
 
+import store from '@/store';
 router.beforeEach((to,from,next)=>{
 	document.title = "秘制美食后台系统";
-	next();
+	//进入主页就拦截，判断是否登录
+	if(to.path.startsWith("/home")){
+		if(!sessionStorage.getItem("isLogin")){
+			router.push("/");
+			Vue.prototype.$message.error("请先登录");
+		}else{
+			next();
+		}
+	}else{
+		next();
+	}
+	
 })

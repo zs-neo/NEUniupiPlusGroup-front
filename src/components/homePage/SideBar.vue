@@ -1,5 +1,6 @@
 <template>
-	<div class="sideBar">
+
+	<div class="sideBar" v-if="staff">
 
 		<transition name="el-zoom-in-center" >
 			<el-menu
@@ -13,7 +14,9 @@
 			  active-text-color="#20a0ff"  
 			  :router="true"
 			  :unique-opened=true>
-			  <el-submenu index="1">
+	
+			  
+			  <el-submenu index="1" v-if='check("美食管理")||check("美食类别管理")'>
 
 				<template slot="title">
 
@@ -22,55 +25,67 @@
 				</template>
 				  
 				
-			  <el-menu-item index='/home/foodManage'>
-				  <span>美食信息管理</span>
-			  </el-menu-item>
-			  <el-menu-item index='/home/foodtypeManage'>
-					<span>美食分类管理</span>
-			  </el-menu-item>
+
+				  <el-menu-item index="2" v-if='check("美食管理")'>
+					  <span>美食管理</span>
+				  </el-menu-item>
+				  <el-menu-item index="1-2" v-if='check("美食类别管理")'>
+					  <span>美食类别管理</span>
+				  </el-menu-item>
 			   </el-submenu>
-				   <el-submenu index="2">
+	
+				   <el-submenu index="2" v-if='check("限时活动")||check("优惠券")'>
 					<template slot="title">
 					  <i class="el-icon-document"></i>
 					  <span>活动管理</span>
 					</template>
 					
-					  <el-menu-item index="/home/eventsManage">
+	
+					  <el-menu-item index="/home/EventsManage" v-if='check("限时活动")'>
 						  <span>限时活动</span>
 					  </el-menu-item>
-					  <el-menu-item index="/home/couponMange">
+		
+					  <el-menu-item index="/home/CountMange" v-if='check("优惠券")'>
 						  <span>优惠券</span>
 					  </el-menu-item>
 				   </el-submenu>
-			  <el-menu-item index="3">
+
+			  <el-menu-item index="3" v-if='check("系统安全维护")'>
 				<i class="el-icon-lock"></i>
 				<span slot="title">系统安全维护</span>
 			  </el-menu-item>
-			  <el-menu-item index="4">
+	
+			  <el-menu-item index="4" v-if='check("订单管理")'>
 				<i class="el-icon-goods"></i>
 				<span slot="title">订单管理</span>
 			  </el-menu-item>
-			  <el-submenu index="5">
+		
+			  <el-submenu index="5" v-if='check("角色管理")||check("权限管理")'>
 				<template slot="title">
 					<i class="el-icon-user"></i>
 					<span slot="title">角色和权限管理</span>
 				</template>
-				<el-menu-item index="/home/rolesManage">
+
+				<el-menu-item v-if='check("角色管理")' index="/home/rolesManage">
 					<span>角色管理</span>
 				</el-menu-item>
-				<el-menu-item index="/home/privilegeManage">
+
+				<el-menu-item index="/home/privilegeManage" v-if='check("权限管理")'>
 					<span>权限管理</span>
 				</el-menu-item>
 			  </el-submenu>
-			  <el-submenu index="6">
+	
+			  <el-submenu index="6" v-if='check("流量统计")||check("财务报表")'>
 				<template slot="title">
 					<i class="el-icon-files"></i>
 					<span slot="title">统计报表</span>
 				</template>
-				<el-menu-item index="/home/statisticsManage">
+
+				<el-menu-item v-if='check("财务报表")' index="/home/statisticsManage">
 					<span>财务报表</span>
 				</el-menu-item>
-				<el-menu-item index="/home/flowManage">
+	
+				<el-menu-item v-if='check("流量统计")' index="/home/flowManage">
 					<span>流量统计</span>
 				</el-menu-item>
 			</el-submenu>
@@ -82,15 +97,33 @@
 <script>
 
 	import bus from '../../Bus.js';
+	import AdminService from '../../views/homeSubs/AdminService.js';
 	export default{
 		data(){
+			
 			return{
+				privileges:[],
 				collapse: false,
 				style:'',
+				staff: true,
+				
 			};
 			
 		},
 		created() {
+			AdminService.getLoginAdmin(rs=>{
+				let parr = [];
+				if(rs.aps.length==0){
+					this.staff = false;
+				}
+				for (let i = 0;i < rs.aps.length;i++) {
+					let  adminPrivilege = rs.aps[i];
+					console.log(adminPrivilege);
+					parr.push(adminPrivilege.privilege.pname);
+				}
+				this.privileges = parr;
+				console.log(this.privileges);
+			}),
 			bus.$on('collapse', msg => {
 			    this.collapse = msg;
 				if(msg){
@@ -101,6 +134,16 @@
 			})
 		},
 		methods:{
+			check(pname){
+				console.log(this.privileges);
+				for( let privilege of this.privileges){
+					console.log(privilege);
+					if(privilege==pname){
+						return true;
+					}
+				}
+				return false;
+			},
 			itemSelectHandler(index,indexPath){
 			      console.log(index);
 			      console.log(indexPath);
