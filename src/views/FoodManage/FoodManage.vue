@@ -36,7 +36,9 @@
 				<div  v-if='display'>
 					<div>
 						<el-main>
-						  <el-table :data="tableData1">
+						  <el-table 
+						  :data="tableData1"
+						  ref="foodtable">
 							<el-table-column type="selection" width="60">
 							</el-table-column>
 						    <el-table-column label="创建时间" align="center" width="120" sortable>
@@ -526,7 +528,7 @@
 				type: 'success',
 				message: '删除成功!'
 			  });
-			  rows.splice(index, 1);
+			  rows.splice(this.$refs.foodtable.tableData[index], 1);
 			  console.log(fid);
 			  this.axios.get("http://localhost:8081/food/deleteFood",{params:{
 			  	fid:fid,
@@ -537,7 +539,7 @@
 			  this.$message({
 				type: 'info',
 				message: '已取消删除'
-			  });          
+			  });
 			});
 
 			
