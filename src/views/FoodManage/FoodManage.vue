@@ -131,10 +131,10 @@
 							</el-form-item>
 							<el-form-item label="图片">
 							<el-upload
-							  class="avatar-uploader"
-							  action="https://jsonplaceholder.typicode.com/posts/"
+							  action="#"
+							  :auto-upload="false"
 							  :show-file-list="false"
-							  :on-success="handleAvatarSuccess"
+							  :on-change="hanldeChange"
 							  :before-upload="beforeAvatarUpload"
 							  >
 							  <img v-if="uploadsrc" :src="uploadsrc" class="avatar">
@@ -184,10 +184,10 @@
 							</el-form-item>
 							<el-form-item label="图片">
 							<el-upload
-							  class="avatar-uploader"
-							  action="https://jsonplaceholder.typicode.com/posts/"
+							  action="#"
+							  :auto-upload="false"
 							  :show-file-list="false"
-							  :on-success="handleAvatarSuccess1"
+							  :on-change="hanldeChange1"
 							  :before-upload="beforeAvatarUpload1"
 							  >
 							  <img v-if="uploadsrc1" :src="uploadsrc1" class="avatar">
@@ -436,16 +436,29 @@
 				});
 			});
 		},
-		handleAvatarSuccess(res, file) {
-			this.updateUploadState=1;
-			this.uploadsrc = URL.createObjectURL(file.raw);
-			this.picfile=file.raw;
-			this.sizeForm.fpic=file.raw.name;
+		hanldeChange(){
+			var _this = this;
+			var event = event || window.event;
+			var file = event.target.files[0];
+			var reader = new FileReader();
+			this.sizeForm.fpic=file.name;
+			console.log(this.sizeForm.fpic);
+			reader.onload=function(e){
+				_this.uploadsrc=e.target.result;
+			}
+			reader.readAsDataURL(file);
 		},
-		handleAvatarSuccess1(res, file){
-			this.uploadsrc1 = URL.createObjectURL(file.raw);
-			this.picfile1=file.raw;
-			this.sizeForm.fpic=file.raw.name;
+		hanldeChange1(){
+			var _this = this;
+			var event = event || window.event;
+			var file = event.target.files[0];
+			var reader = new FileReader();
+			this.sizeForm.fpic=file.name;
+			console.log(this.sizeForm.fpic);
+			reader.onload=function(e){
+				_this.uploadsrc1=e.target.result;
+			}
+			reader.readAsDataURL(file);
 		},
 		beforeAvatarUpload(file) {
 			const isJPG = (file.type == 'image/jpeg'||file.type == 'image/png');
