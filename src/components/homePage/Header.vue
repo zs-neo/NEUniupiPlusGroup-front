@@ -73,7 +73,7 @@
 		computed:{
 			iconShowWay(){
 				if(this.userinfo.icon){
-					return `http://localhost:8081/static/${this.userinfo.icon}`;
+					return `http://localhost:8081/res/${this.userinfo.icon}`;
 				}else{
 					return require('../../../static/img/img.jpg');
 				}
@@ -181,17 +181,21 @@
     }
     .user-avator{
         flex: 1;
-		align-content: center;
+
+		display: flex;
+		align-items: center;
     }
     .user-avator img{
         border-radius: 50%;
 		height: 40px;
 		width: 40px;
-		margin-left: 0px;		
+		margin-left: 25px;
     }
     .el-dropdown-link{
         color: #fff;
         cursor: pointer;
+		display: flex;
+		align-items: center;
     }
     .el-dropdown-menu__item{
         text-align: center;

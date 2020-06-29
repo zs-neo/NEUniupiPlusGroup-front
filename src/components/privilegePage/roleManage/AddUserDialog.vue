@@ -183,11 +183,14 @@
 								   type: "success"
 								 });
 							 }else{
-								 this.$message.error(rs.msg);
+								this.$message.error(rs.data.msg);
+								sessionStorage.clear();
+								this.$router.push("/");
 							 }
-							 
 							 this.$emit("F_SHOW_ADDUSER", false, 1);
 						});				  
+					}).catch(()=>{
+						
 					});
 				}
 			  });

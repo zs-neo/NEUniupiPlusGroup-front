@@ -55,7 +55,7 @@
 								sessionStorage.setItem("isLogin", true);
 								this.$router.push({name:'Home',});
 							}else{
-								this.$message.error("密码错误");
+								this.$message.error(rs.data.statusDesc);
 							}
 						});
 						

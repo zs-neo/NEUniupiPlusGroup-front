@@ -158,7 +158,7 @@
 		computed:{
 			iconShowWay(){
 				if(this.userinfo.icon){
-					return `http://localhost:8081/static/${this.userinfo.icon}`;
+					return `http://localhost:8081/res/${this.userinfo.icon}`;
 				}else{
 					return require('../../../static/img/img.jpg');
 				}

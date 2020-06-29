@@ -3,7 +3,7 @@ import VueRouter from 'vue-router'
 import Login from '@/views/Login.vue'
 import Home from '@/views/Home.vue'
 import EventsManage from '../views/EventsManage/EventsManage.vue'
-import CouponMange from '../views/CouponManage/CouponMange.vue'
+import CountManage from '../views/CountManage/CountManage.vue'
 import RolesManage from '../views/homeSubs/PrivilegeManage/RolesManage.vue'
 
 import FoodManage from '../views/FoodManage/FoodManage.vue'
@@ -13,6 +13,7 @@ import PrivilegeManage from '../views/homeSubs/PrivilegeManage/PrivilegeManage.v
 import StatisticsManage from '../views/StatisticsManage/StatisticsManage.vue'
 import FlowManage from '../views/FlowManage/FlowManage.vue'
 import MineCenter from '../views/homeSubs/MineCenter.vue'
+import OrderManage from '../views/OrderManage/OrderManage.vue'
 Vue.use(VueRouter)
 
   const routes = [
@@ -53,9 +54,9 @@ Vue.use(VueRouter)
 		},
   		{
 
-  		  path: '/home/couponMange',
-  		  name: 'CouponMange',
-  		  component: CouponMange,
+  		  path: '/home/countManage',
+  		  name: 'CountManage',
+  		  component: CountManage,
 		  meta:{
 			 title: "优惠券", 
 			 show: true
@@ -116,6 +117,15 @@ Vue.use(VueRouter)
 			component: MineCenter,
 			meta:{
 				title:"个人中心",
+				show:true
+			}
+		},
+		{
+			path: '/home/orderManage',
+			name: "OrderManage",
+			component: OrderManage,
+			meta:{
+				title:"订单管理",
 				show:true
 			}
 		}

@@ -1,10 +1,8 @@
 <template>
 	<div>
 		<div class="home_content_1">
-			<div class="home_content_left_1">
-			
+			<div class="home_content_left_1">		
 				<el-menu
-				
 				class="el-menu-vertical-demo"
 				@select="itemSelectHandler"
 				:unique-opened="true"
@@ -38,6 +36,7 @@
 						<el-main>
 						  <el-table 
 						  :data="tableData1"
+						  border
 						  ref="foodtable">
 							<el-table-column type="selection" width="60">
 							</el-table-column>
@@ -142,7 +141,7 @@
 							</el-upload>
 							</el-form-item>
 						    <el-form-item size="medium">
-						      <el-button type="primary" @click="onSubmit()">更细</el-button>
+						      <el-button type="primary" @click="onSubmit()">更新</el-button>
 						      <el-button  type="primary" @click="resetForm()">重置</el-button>
 						    </el-form-item>
 						  </el-form>
@@ -212,15 +211,20 @@
 
 
 <style>
+	.el-menu-item{
+		min-width: 50px !important;
+	}
 	.home_content_1{
 		height: 560.6px;
 		width: 100%;
+		
 		flex:5;
 	    display: flex;
 		background-color: #FFFFFF;
 	}
 	.home_content_left_1{
-		overflow-y: scroll;
+		text-align: left;
+		overflow-y: auto;
 		height: 100%;
 		flex:1;
 		background-color: #FFFFFF;
@@ -228,8 +232,8 @@
 	}
 	.home_content_right_1{
 		height: 560.6px;
-		overflow-x: scroll;
-		flex:4;
+		overflow-x: auto;
+		flex:6;
 		background-color: #FFFFFF;
 	}
 	.el-header {

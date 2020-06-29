@@ -1,5 +1,5 @@
 <template>
-	<div id="page">
+	<div class="page">
 		<el-row>
 			<el-col class="row" :span="6">
 				<el-card class="box-card">
@@ -313,11 +313,13 @@
 	}
 </script>
 
-<style>
-	#page {
+<style scoped>
+	.page {
 		/* background: rgb(240, 240, 240); */
 		/* background: rgb(94, 183, 255, 0.1); */
 		background: rgb(50, 65, 87, 0.1);
+		width: 100%;
+		overflow: auto;
 	}
 
 	.row {

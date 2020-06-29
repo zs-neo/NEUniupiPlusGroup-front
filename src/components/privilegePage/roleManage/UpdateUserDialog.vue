@@ -48,6 +48,7 @@
 
 <script>
 	import { Loading } from 'element-ui';
+	import Vue from 'vue';
 	export default{
 		props:{
 			depts:{},
@@ -91,6 +92,12 @@
 			};
 		},
 		created() {
+			Vue.axios.post(`http://localhost:8081/admin/getAdminInfo`).then(rs=>{
+				if(!rs.data.isLogin){
+					this.$message.error("身份过期，请重新登录")
+					this.$router.push("/");
+				}
+			});	
 			var obj = JSON.stringify(this.updateUser);
 			
 			this.userinfo = JSON.parse(obj);
@@ -118,19 +125,21 @@
 			//更新提交
 			updateUserSubmit: function() {
 			  this.$refs.updateUserForm.validate(valid => {
-			    if (valid) {
-					
+			    if (valid) {					
 			      this.$confirm("确认提交吗？", "提示", {}).then(() => {
+					  
 			        let loadingInstance = Loading.service({text: '加载中'});	
+					console.log("why");
 					Vue.axios.post(`http://localhost:8081/admin/updateAdmin`,this.userinfo).then(rs=>{
-						if(rs.isSuccess){
-							loadingInstance.close();
+						loadingInstance.close();
+						if(rs.data.isSuccess){				
 							 this.$message({
 							   message: "提交成功",
 							   type: "success"
 							 });
 						}else{
-							this.$message.error(rs.msg);
+							this.$message.error("请重新登录");
+							this.$router.push("/");
 						}
 						
 						 this.$emit("F_SHOW_ADDUSER", false, 1);

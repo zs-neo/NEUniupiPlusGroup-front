@@ -204,7 +204,7 @@
 				  if(this.choosePrivileges.length==0){
 					  Vue.axios.get(`http://localhost:8081/ap//deleteByAdmin/this.updatePrivilegeInfo.adminid`).then(rs=>{
 					  	this.$message({
-					  		message:"更新成功",
+					  		message:"更新成功, 重新登录后生效",
 					  		type:'success'
 					  	});
 					  	this.$emit("F_SHOW_UPDATEPRIVILEGE", false,1);

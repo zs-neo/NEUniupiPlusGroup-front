@@ -1,5 +1,15 @@
 <template>
-
+	<div class="home">
+	      <div class="home_head">
+			  <div class="home-head-left">
+				  <HeadBar></HeadBar>
+			  </div>
+			  <div class="home-head-right">
+				  <Header></Header>
+			  </div>
+	      </div>
+	      <div class="home_content">
+	          <div class="home_content_left">
 				<SideBar></SideBar>
 
 			</div>
@@ -52,32 +62,50 @@
 </script>
 
 <style lang="less">
-
-
-
-			width: 100%;
-
-				flex: 5;
+	
+	    .home{
+	        width:100%;
+	        height:100%;
+	        display: flex;
+	        flex-direction: column;
+		    overflow: hidden;
+	        .home_head{
+	           flex: 1;
+				width: 100%;
+				// background-color: rgb(40, 43, 51, 0.1);
+				background: rgb(57, 68, 90);
+				display: flex;
+				.home-head-left {
+					flex: 5;
+				}
+				.home-head-right {
+					flex: 5;
+				}
 			}
+			.home_content{
+				flex:10;
+			
+				display: flex;
+				height: 100%;
+				overflow-y: auto;
 
 
-			.home-head-right {
-				flex: 5;
+
+				.home_content_left {
+					display: inline-block;
+					background-color: #324157;
+					text-align: left;
+
+					}
+					 .home_content_right{
+						flex:5;
+						width: 80%;
+						
+						display: inline-block;
+				  
+					}
+				}
 			}
-		}
-
-
-			height: 100%;
-
-
-
-			.home_content_left {
-				display: inline-block;
-				background-color: #324157;
-				text-align: left;
-
-				display: inline-block;
-
 
 	.showPage {
 		width: 100%;
@@ -94,8 +122,7 @@
 
 
 	.showPage .pageContent {
+		overflow: auto;
 		flex: 15;
-	
-
 	}
 </style>

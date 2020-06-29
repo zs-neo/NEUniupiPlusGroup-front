@@ -26,15 +26,15 @@
 				  
 				
 
-				  <el-menu-item index="2" v-if='check("美食管理")'>
+				  <el-menu-item index='/home/foodManage' v-if='check("美食管理")'>
 					  <span>美食管理</span>
 				  </el-menu-item>
-				  <el-menu-item index="1-2" v-if='check("美食类别管理")'>
+				  <el-menu-item index='/home/foodtypeManage' v-if='check("美食类别管理")'>
 					  <span>美食类别管理</span>
 				  </el-menu-item>
 			   </el-submenu>
 	
-				   <el-submenu index="2" v-if='check("限时活动")||check("优惠券")'>
+				   <el-submenu index="2" v-if='check("限时活动")||check("优惠管理")'>
 					<template slot="title">
 					  <i class="el-icon-document"></i>
 					  <span>活动管理</span>
@@ -45,8 +45,8 @@
 						  <span>限时活动</span>
 					  </el-menu-item>
 		
-					  <el-menu-item index="/home/CountMange" v-if='check("优惠券")'>
-						  <span>优惠券</span>
+					  <el-menu-item index="/home/countManage" v-if='check("优惠管理")'>
+						  <span>优惠管理</span>
 					  </el-menu-item>
 				   </el-submenu>
 
@@ -55,7 +55,7 @@
 				<span slot="title">系统安全维护</span>
 			  </el-menu-item>
 	
-			  <el-menu-item index="4" v-if='check("订单管理")'>
+			  <el-menu-item index="/home/orderManage" v-if='check("订单管理")'>
 				<i class="el-icon-goods"></i>
 				<span slot="title">订单管理</span>
 			  </el-menu-item>
