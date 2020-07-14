@@ -21,7 +21,14 @@ axios.interceptors.response.use(function (response) {
 	if(undefined == response.data.isLogin || response.data.isLogin){
 		return response;
 	}else{
-		Vue.prototype.$message.error("会话超时，请重新登录...")
+		console.log()
+		if(undefined != response.data.msg){
+			Vue.prototype.$message.error(response.data.msg);
+		}else{
+			Vue.prototype.$message.error("会话超时，请重新登录...");
+			
+		}
+		
 		sessionStorage.clear();
 		router.push("/");
 	}

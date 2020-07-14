@@ -238,7 +238,7 @@
 			},
 			//更新密码
 			
-			//最好还是前端通过转换判断是否相等，然后直接后端更新
+			//最好还是前端通过转换判断是否相等，然后直接后端更新?后端保护加密方法更安全
 			updatePwdFunc(){
 				this.$refs.updatePwdForm.validate(valid => {
 				  if (valid) {

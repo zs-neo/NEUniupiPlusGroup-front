@@ -14,6 +14,12 @@ import StatisticsManage from '../views/StatisticsManage/StatisticsManage.vue'
 import FlowManage from '../views/FlowManage/FlowManage.vue'
 import MineCenter from '../views/homeSubs/MineCenter.vue'
 import OrderManage from '../views/OrderManage/OrderManage.vue'
+import IPManage from '../views/SafetyManage/IpManage.vue'
+import ClientManage from '../views/SafetyManage/ClientManage.vue'
+import CouponAndRPHeader from '../views/CouponManage/CouponAndRPHeader.vue'
+import CouponDetail from '../views/CouponManage/CouponDetail.vue'
+import RedPacketDetail from '../views/CouponManage/RedPacketDetail.vue'
+import ScoreDetail from '../views/CouponManage/ScoreDetail.vue'
 Vue.use(VueRouter)
 
   const routes = [
@@ -62,6 +68,44 @@ Vue.use(VueRouter)
 			 show: true
 		  }
   		},
+		{
+		  path: '/home/CouponAndRPHeader',
+		  name: 'CouponAndRPHeader',
+		  component: CouponAndRPHeader,
+		  redirect:'/CouponAndRPHeader/CouponDetail',
+		  meta:{
+			 title: "红包优惠券详情", 
+			 show: true
+		  },
+		  children:[
+			{
+				path:'/CouponAndRPHeader/CouponDetail',
+				name:'CouponDetail',
+				component:CouponDetail,
+				meta:{
+					 title: "优惠券详情",
+					 show: true
+				},
+			},
+			{
+				path:'/CouponAndRPHeader/RedPacketDetail',
+				name:'RedPacketDetail',
+				component:RedPacketDetail,
+				meta:{
+					title: "红包详情",
+					 show: true
+				},
+			},
+			{
+				path:'/CouponAndRPHeader/ScoreDetail',
+				name:'ScoreDetail',
+				component:ScoreDetail,
+				meta:{
+					title: "会员积分详情",
+					 show: true
+				},
+			}],
+		  },
 		{
 			path: '/home/rolesManage',
 			name: 'RolesManage',
@@ -128,10 +172,29 @@ Vue.use(VueRouter)
 				title:"订单管理",
 				show:true
 			}
-		}
+		},
+		{
+			path: '/home/IPManage',
+			name: "IPManage",
+			component: IPManage,
+			meta:{
+				title:"IP管理",
+				show:true
+			}
+		},
+		{
+			path: '/home/clientManage',
+			name: "ClientManage",
+			component: ClientManage,
+			meta:{
+				title:"客户管理",
+				show:true
+			}
+		},
+		
 
 	],
-	redirect: '/home/mineCenter'
+	redirect: '/home/flowManage/'
   }
 ]
 

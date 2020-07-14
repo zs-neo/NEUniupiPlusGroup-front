@@ -202,7 +202,7 @@
 				  let loadingInstance = Loading.service({text: '加载中'});	
 				  
 				  if(this.choosePrivileges.length==0){
-					  Vue.axios.get(`http://localhost:8081/ap//deleteByAdmin/this.updatePrivilegeInfo.adminid`).then(rs=>{
+					  Vue.axios.get(`http://localhost:8081/ap/deleteByAdmin/this.updatePrivilegeInfo.adminid`).then(rs=>{
 					  	this.$message({
 					  		message:"更新成功, 重新登录后生效",
 					  		type:'success'

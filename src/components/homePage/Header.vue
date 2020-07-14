@@ -23,16 +23,16 @@
 						<span class="el-dropdown-link">
 							<img :src="iconShowWay">
 						</span>
-						
-						<el-dropdown-menu slot="dropdown">
+					
+						<el-dropdown-menu type="text" slot="dropdown">
 							<div class="userCenter" style="width: 350px;">
 								<div style="margin-bottom: 20px;">
 									<div style="display: inline-block; ">
 										<img style="margin-left: 10px; border-radius: 50%;height: 50px;width: 50px;" :src="iconShowWay"/>
 									</div>
-									<div style="display: inline-block; ">
+									<div style="display: inline-block; width: 80%;">
 										<div style="display: inline-block;width: 100%;" >
-											<el-dropdown-item style="text-align: center;" command="userCenter">{{userinfo.username}}</el-dropdown-item>
+											<div style="color: #999999; font-size: 14px; padding-bottom:8px ; text-align: center;cursor:pointer;" @click="userCenter">{{userinfo.username}}</div>
 										</div>
 										<div style="display: inline-block;width: 100%;font-size: 12px;" align="center">
 											角色：{{userinfo.role.rname}}
@@ -99,6 +99,9 @@
 					 this.$router.push('/home/mineCenter');
 				}
             },
+			userCenter(){
+				 this.$router.push('/home/mineCenter');
+			},
             // 全屏事件
             handleFullScreen(){
                 let element = document.documentElement;
@@ -130,6 +133,9 @@
     }
 </script>
 <style scoped>
+	.el-dropdown-item__title:hover {
+		background-color: none !important;
+	}
     .header {
         position: relative;
         box-sizing: border-box;

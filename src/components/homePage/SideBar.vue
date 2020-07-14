@@ -34,7 +34,7 @@
 				  </el-menu-item>
 			   </el-submenu>
 	
-				   <el-submenu index="2" v-if='check("限时活动")||check("优惠管理")'>
+				   <el-submenu index="2" v-if='check("限时活动")||check("优惠管理")||check("红包优惠券管理")'>
 					<template slot="title">
 					  <i class="el-icon-document"></i>
 					  <span>活动管理</span>
@@ -48,12 +48,26 @@
 					  <el-menu-item index="/home/countManage" v-if='check("优惠管理")'>
 						  <span>优惠管理</span>
 					  </el-menu-item>
+					  <el-menu-item index="/home/CouponAndRPHeader" v-if='check("红包优惠券管理")'>
+						  <span>红包优惠券管理</span>
+					  </el-menu-item>
 				   </el-submenu>
-
-			  <el-menu-item index="3" v-if='check("系统安全维护")'>
-				<i class="el-icon-lock"></i>
-				<span slot="title">系统安全维护</span>
-			  </el-menu-item>
+				
+				<el-submenu index="3" v-if='check("IP管理")||check("客户管理")'>
+					<template slot="title">
+						<i class="el-icon-lock"></i>
+						<span slot="title">系统安全维护</span>
+					</template>
+	
+					<el-menu-item v-if='check("IP管理")' index="/home/IPManage">
+						<span>IP管理</span>
+					</el-menu-item>
+	
+					<el-menu-item index="/home/clientManage" v-if='check("客户管理")'>
+						<span>客户管理</span>
+					</el-menu-item>
+				</el-submenu>
+			  
 	
 			  <el-menu-item index="/home/orderManage" v-if='check("订单管理")'>
 				<i class="el-icon-goods"></i>
