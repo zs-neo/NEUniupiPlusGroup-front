@@ -12,6 +12,8 @@ import FoodTypeManage from '../views/FoodManage/FoodtypeManage.vue'
 import PrivilegeManage from '../views/homeSubs/PrivilegeManage/PrivilegeManage.vue'
 import StatisticsManage from '../views/StatisticsManage/StatisticsManage.vue'
 import FlowManage from '../views/FlowManage/FlowManage.vue'
+import ShopManage from '../views/ShopManage/ShopManage.vue'
+import ChatManage from '../views/ChatManage/ChatManage.vue'
 
 Vue.use(VueRouter)
 
@@ -99,11 +101,29 @@ Vue.use(VueRouter)
 			}
 		},
 		{
+			path: '/home/shopManage',
+			name: 'shopManage',
+			component: ShopManage,
+			meta:{
+				 title: "商户信息", 
+				 show: true
+			}
+		},
+		{
 			path: '/home/flowManage',
 			name: 'flowManage',
 			component: FlowManage,
 			meta:{
 				 title: "流量统计", 
+				 show: true
+			}
+		},
+		{
+			path: '/home/chatManage',
+			name: 'ChatManage',
+			component: ChatManage,
+			meta:{
+				 title: "客服中心", 
 				 show: true
 			}
 		}
