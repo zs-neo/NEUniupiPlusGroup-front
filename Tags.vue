@@ -1,6 +1,6 @@
 <template>
     <div class="tags" v-if="showTags">
-        <ul>
+        <ul style="overflow: hidden;height: 48px;">
             <li class="tags-li" v-for="(item,index) in tagsList" :class="{'active': isActive(item.path)}" :key="index">
                 <router-link :to="item.path" class="tags-li-title">
                     {{item.title}}

@@ -5,7 +5,7 @@
 				<i class="el-icon-menu"></i>
 			</div>
 			<div class="logo">
-				秘制厨房后台管理系统
+				五凤楼后台管理系统
 			</div>
 		</div>
 	</div>

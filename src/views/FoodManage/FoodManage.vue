@@ -1,10 +1,8 @@
 <template>
 	<div>
 		<div class="home_content_1">
-			<div class="home_content_left_1">
-			
+			<div class="home_content_left_1">		
 				<el-menu
-				
 				class="el-menu-vertical-demo"
 				@select="itemSelectHandler"
 				:unique-opened="true"
@@ -38,6 +36,7 @@
 						<el-main>
 						  <el-table 
 						  :data="tableData1"
+						  border
 						  ref="foodtable">
 							<el-table-column type="selection" width="60">
 							</el-table-column>
@@ -131,10 +130,10 @@
 							</el-form-item>
 							<el-form-item label="图片">
 							<el-upload
-							  class="avatar-uploader"
-							  action="https://jsonplaceholder.typicode.com/posts/"
+							  action="#"
+							  :auto-upload="false"
 							  :show-file-list="false"
-							  :on-success="handleAvatarSuccess"
+							  :on-change="hanldeChange"
 							  :before-upload="beforeAvatarUpload"
 							  >
 							  <img v-if="uploadsrc" :src="uploadsrc" class="avatar">
@@ -142,7 +141,7 @@
 							</el-upload>
 							</el-form-item>
 						    <el-form-item size="medium">
-						      <el-button type="primary" @click="onSubmit()">更细</el-button>
+						      <el-button type="primary" @click="onSubmit()">更新</el-button>
 						      <el-button  type="primary" @click="resetForm()">重置</el-button>
 						    </el-form-item>
 						  </el-form>
@@ -184,10 +183,10 @@
 							</el-form-item>
 							<el-form-item label="图片">
 							<el-upload
-							  class="avatar-uploader"
-							  action="https://jsonplaceholder.typicode.com/posts/"
+							  action="#"
+							  :auto-upload="false"
 							  :show-file-list="false"
-							  :on-success="handleAvatarSuccess1"
+							  :on-change="hanldeChange1"
 							  :before-upload="beforeAvatarUpload1"
 							  >
 							  <img v-if="uploadsrc1" :src="uploadsrc1" class="avatar">
@@ -212,15 +211,20 @@
 
 
 <style>
+	.el-menu-item{
+		min-width: 50px !important;
+	}
 	.home_content_1{
 		height: 560.6px;
 		width: 100%;
+		
 		flex:5;
 	    display: flex;
 		background-color: #FFFFFF;
 	}
 	.home_content_left_1{
-		overflow-y: scroll;
+		text-align: left;
+		overflow-y: auto;
 		height: 100%;
 		flex:1;
 		background-color: #FFFFFF;
@@ -228,8 +232,8 @@
 	}
 	.home_content_right_1{
 		height: 560.6px;
-		overflow-x: scroll;
-		flex:4;
+		overflow-x: auto;
+		flex:6;
 		background-color: #FFFFFF;
 	}
 	.el-header {
@@ -436,16 +440,29 @@
 				});
 			});
 		},
-		handleAvatarSuccess(res, file) {
-			this.updateUploadState=1;
-			this.uploadsrc = URL.createObjectURL(file.raw);
-			this.picfile=file.raw;
-			this.sizeForm.fpic=file.raw.name;
+		hanldeChange(){
+			var _this = this;
+			var event = event || window.event;
+			var file = event.target.files[0];
+			var reader = new FileReader();
+			this.sizeForm.fpic=file.name;
+			console.log(this.sizeForm.fpic);
+			reader.onload=function(e){
+				_this.uploadsrc=e.target.result;
+			}
+			reader.readAsDataURL(file);
 		},
-		handleAvatarSuccess1(res, file){
-			this.uploadsrc1 = URL.createObjectURL(file.raw);
-			this.picfile1=file.raw;
-			this.sizeForm.fpic=file.raw.name;
+		hanldeChange1(){
+			var _this = this;
+			var event = event || window.event;
+			var file = event.target.files[0];
+			var reader = new FileReader();
+			this.sizeForm.fpic=file.name;
+			console.log(this.sizeForm.fpic);
+			reader.onload=function(e){
+				_this.uploadsrc1=e.target.result;
+			}
+			reader.readAsDataURL(file);
 		},
 		beforeAvatarUpload(file) {
 			const isJPG = (file.type == 'image/jpeg'||file.type == 'image/png');

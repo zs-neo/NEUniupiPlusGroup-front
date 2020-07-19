@@ -1,16 +1,16 @@
 <template>
 <div id="loginFrame">
 <div class="containers">
-    <el-form label-width="80px" class="login-page" >
+    <el-form label-width="80px" status-icon class="login-page" :model="userinfo" ref="loginForm" :rules="loginRule">
       <h2>登录验证</h2>
 	  <br />
       <el-form-item label="用  户:" prop="username">
-        <el-input v-model="userinfo.loginname" placeholder="请输入用户名">
+        <el-input v-model="userinfo.username" placeholder="请输入用户名">
           <el-button slot="prepend" icon="el-icon-user"></el-button>
         </el-input>
       </el-form-item>
-      <el-form-item label="密 码:">
-        <el-input v-model="userinfo.pwd" type="password" placeholder="请输入密码">
+      <el-form-item label="密 码:" prop="password">
+        <el-input v-model="userinfo.password" placeholder="请输入密码" show-password>
           <el-button slot="prepend" icon="el-icon-key"></el-button>
         </el-input>
       </el-form-item>
@@ -22,35 +22,47 @@
 
 <script>
 	import Vue from 'vue';
+	import { Loading } from 'element-ui';
 	export default{
 		name:'login',
 		data(){
 			return{
 				userinfo:{
-					loginname:'',
-					pwd:'',
+					username:"",
+					password:"",
 				},
 				msg:'',
+				loginRule:{
+					username:[{ required: true, message: "请输入用户名", trigger: "blur" }],
+					password:[
+						{ required: true, message: "请输入密码", trigger: "blur" },
+					],	
+				}
 			};
 		},
 		methods:{
+			// TODO
+			//登录验证 返回
 			//开发中假登录
-			/* login:function(){
-				Vue.axios.get(`http://localhost:8080/ajax-server/userinfo/login`, {params:{
-					'usercode':this.userinfo.loginname,
-					'userpwd':this.userinfo.pwd,
-				}}).then(rs=>{
-					if(rs.data.isLogin){
-						this.$store.commit('validUser');
-						this.$router.push({name:'Home',});
-					}else{
-						this.errorMsg = "密码错误！";
-					}
-				});
-			} */
 			login:function(){
-				this.$router.push({name:'Home',});
-			},
+				this.$refs.loginForm.validate(valid => {
+					 if (valid) {
+						 let loadingInstance = Loading.service({text: '正在登录...'});
+						 Vue.axios.post(`http://localhost:8081/admin/login/${this.userinfo.username}/${this.userinfo.password}`).then(rs=>{
+							loadingInstance.close();
+							if(rs.data.isLogin){
+								//this.$store.commit('validUser');
+								sessionStorage.setItem("isLogin", true);
+								this.$router.push({name:'Home',});
+							}else{
+								this.$message.error(rs.data.statusDesc);
+							}
+						});
+						
+					 }
+				});
+			}
+			
 		},
 	}
 </script>
@@ -62,12 +74,14 @@
 		background-repeat: no-repeat;
 		background-size: cover;
 		position: absolute;
+		padding-top: 200px;
 		height: 100%;
 		width: 100%;
+		box-sizing: border-box;
 	}
 	.containers {
 
-	  margin-top: 200px;
+	  /* margin-top: 200px; */
 	  width: 100%;
 	  height: 100%;
 	}

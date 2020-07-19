@@ -9,59 +9,99 @@
 			<!-- 消息中心 -->
 			<div class="btn-bell">
 				<el-tooltip effect="dark" :content="message?`有${message}条未读消息`:`消息中心`" placement="bottom">
-					<router-link to="/tabs">
+					<!-- <router-link to="/tabs"> -->
+					<div class="bell">
 						<i class="el-icon-bell"></i>
-					</router-link>
+					</div>
+					<!-- </router-link> -->
 				</el-tooltip>
 				<span class="btn-bell-badge" v-if="message"></span>
 			</div>
 			<!-- 用户头像 -->
-				<div class="user-avator"><img src="../../../static/img/img.jpg"></div>
-				<!-- 用户名下拉菜单 -->
-				<div class="usernameTab">
-				<el-dropdown trigger="click" @command="handleCommand">
-					<span class="el-dropdown-link">
-						{{username}} <i class="el-icon-caret-bottom"></i>
-					</span>
+				<div class="user-avator">
+					<el-dropdown @command="handleCommand">
+						<span class="el-dropdown-link">
+							<img :src="iconShowWay">
+						</span>
 					
-					<el-dropdown-menu slot="dropdown">
-						<a href="" >
-							<el-dropdown-item>我的信息</el-dropdown-item>
-						</a>
-						<el-dropdown-item divided  command="loginout">退出登录</el-dropdown-item>
-					</el-dropdown-menu>
-				</el-dropdown>
-			</div>
+						<el-dropdown-menu type="text" slot="dropdown">
+							<div class="userCenter" style="width: 350px;">
+								<div style="margin-bottom: 20px;">
+									<div style="display: inline-block; ">
+										<img style="margin-left: 10px; border-radius: 50%;height: 50px;width: 50px;" :src="iconShowWay"/>
+									</div>
+									<div style="display: inline-block; width: 80%;">
+										<div style="display: inline-block;width: 100%;" >
+											<div style="color: #999999; font-size: 14px; padding-bottom:8px ; text-align: center;cursor:pointer;" @click="userCenter">{{userinfo.username}}</div>
+										</div>
+										<div style="display: inline-block;width: 100%;font-size: 12px;" align="center">
+											角色：{{userinfo.role.rname}}
+										</div>
+									</div>						
+
+								</div>
+								<div>
+									<el-dropdown-item divided  command="loginout">退出登录</el-dropdown-item>
+								</div>
+							</div>
+							
+						
+						</el-dropdown-menu>
+					</el-dropdown>
+					
+					</div>
         </div>
     </div>
 </template>
 <script>
-   
+   import AdminService from '../../views/homeSubs/AdminService.js';
     export default {
         data() {
             return {
-                collapse: false,
                 fullscreen: false,
-                name: 'merciqiao',
-                lev:'青铜级',
-                message: 2
+                message: 2,
+				userinfo:{
+					username:'',
+					role:{
+						rname:''
+					},
+					icon:''
+				}
+		
             }
         },
-        computed:{
-            username(){
-                // let username = this.$common.getSessionStorage('username');
-				 let username = "张三";
-                return username ? username : this.name;
-            },
-        },
+		computed:{
+			iconShowWay(){
+				if(this.userinfo.icon){
+					return `http://localhost:8081/res/${this.userinfo.icon}`;
+				}else{
+					return require('../../../static/img/img.jpg');
+				}
+			}
+		},
+		created(){
+			AdminService.getLoginAdmin(rs=>{
+				this.userinfo = rs;
+			})
+		},
         methods:{
+
             // 用户名下拉菜单选择事件
             handleCommand(command) {
+				console.log(command);
                 if(command == 'loginout'){
-                    this.$common.removeSessionStorage('token');
-                    this.$router.push('/login');
-                }
+               //TODO
+			   //重置登录验证的全局变量
+			   
+                   this.$router.push('/');
+				   sessionStorage.clear();
+                }else if(command == 'userCenter'){
+					 this.$router.push('/home/mineCenter');
+				}
             },
+			userCenter(){
+				 this.$router.push('/home/mineCenter');
+			},
             // 全屏事件
             handleFullScreen(){
                 let element = document.documentElement;
@@ -93,6 +133,9 @@
     }
 </script>
 <style scoped>
+	.el-dropdown-item__title:hover {
+		background-color: none !important;
+	}
     .header {
         position: relative;
         box-sizing: border-box;
@@ -107,7 +150,7 @@
 		width: 300px;
 		display: flex;
 		line-height: 100px;
-		padding-right: 20px;
+		padding-right: 100px;
 		text-align: center;
     }
     .btn-fullscreen{
@@ -144,18 +187,21 @@
     }
     .user-avator{
         flex: 1;
-		align-content: center;
+
+		display: flex;
+		align-items: center;
     }
     .user-avator img{
         border-radius: 50%;
 		height: 40px;
 		width: 40px;
-		position: absolute;
-		top: 25%;
+		margin-left: 25px;
     }
     .el-dropdown-link{
         color: #fff;
         cursor: pointer;
+		display: flex;
+		align-items: center;
     }
     .el-dropdown-menu__item{
         text-align: center;
